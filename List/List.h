@@ -9,6 +9,12 @@
 
 //============================================================================================
 
+#ifdef String_t
+
+typedef char* element_t;
+
+#endif
+
 #ifdef Int_t
 
 typedef int element_t;

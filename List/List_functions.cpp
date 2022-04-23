@@ -3,6 +3,7 @@
 
 #include "List.h"
 
+//#define DEBUG_LVL_1
 
 void check_nullptr(struct Plist* list)
 {
@@ -22,7 +23,11 @@ void check_nullptr(struct Plist* list)
 
 void plist_free_fill(struct Plist* list, size_t start_elemenet_index, size_t count)
 {
+    #ifdef DEBUG_LVL_1
+
     check_nullptr(list);
+
+    #endif
 
     for (int i = start_elemenet_index; i < count; i++)
     {
@@ -40,7 +45,11 @@ void plist_free_fill(struct Plist* list, size_t start_elemenet_index, size_t cou
 
 void plist_constructor(struct Plist* list, size_t user_capacity)
 {
+    #ifdef DEBUG_LVL_1
+
     check_nullptr(list);
+
+    #endif
 
     if (user_capacity < 1)
     {
@@ -79,7 +88,11 @@ void plist_constructor(struct Plist* list, size_t user_capacity)
 
 void plist_destructor(struct Plist* list)
 {
+    #ifdef DEBUG_LVL_1
+
     check_nullptr(list);
+
+    #endif
 
     free(list->data);
 
@@ -97,7 +110,11 @@ void plist_destructor(struct Plist* list)
 
 size_t plist_insert_start(struct Plist* list, element_t value)
 {
+    #ifdef DEBUG_LVL_1
+
     check_nullptr(list);
+
+    #endif
 
     VERIFICATION(list);
     
@@ -122,7 +139,11 @@ size_t plist_insert_start(struct Plist* list, element_t value)
 
 size_t plist_insert_first(struct Plist* list, element_t value)
 {
+    #ifdef DEBUG_LVL_1
+
     check_nullptr(list);
+
+    #endif
 
     VERIFICATION(list);
 
@@ -159,7 +180,11 @@ size_t plist_insert_first(struct Plist* list, element_t value)
 
 size_t plist_insert_last(struct Plist* list, element_t value)
 {
+    #ifdef DEBUG_LVL_1
+
     check_nullptr(list);
+
+    #endif
 
     VERIFICATION(list);
 
@@ -196,7 +221,11 @@ size_t plist_insert_last(struct Plist* list, element_t value)
 
 size_t plist_insert_before(struct Plist* list, element_t value, size_t number)
 {
+    #ifdef DEBUG_LVL_1
+
     check_nullptr(list);
+
+    #endif
 
     VERIFICATION(list);
 
@@ -245,7 +274,11 @@ size_t plist_insert_before(struct Plist* list, element_t value, size_t number)
 
 size_t plist_insert_after(struct Plist* list, element_t value, size_t number)
 {
+    #ifdef DEBUG_LVL_1
+
     check_nullptr(list);
+
+    #endif
 
     VERIFICATION(list);
 
@@ -292,7 +325,11 @@ size_t plist_insert_after(struct Plist* list, element_t value, size_t number)
 
 void plist_delete_el(struct Plist* list, size_t number)
 {
+    #ifdef DEBUG_LVL_1
+
     check_nullptr(list);
+
+    #endif
 
     VERIFICATION(list);
 
@@ -340,7 +377,11 @@ void plist_delete_el(struct Plist* list, size_t number)
 
 struct Plist_t* plist_resize(struct Plist* list)
 {
+    #ifdef DEBUG_LVL_1
+
     check_nullptr(list);
+
+    #endif
 
     VERIFICATION(list);
 
@@ -372,7 +413,11 @@ struct Plist_t* plist_resize(struct Plist* list)
 
 size_t verificator(struct Plist* list)
 {
+    #ifdef DEBUG_LVL_1
+
     check_nullptr(list);
+
+    #endif
 
     if (list->capacity < 0)
     {
@@ -464,8 +509,12 @@ size_t verificator(struct Plist* list)
 
 void case_err(struct Plist* list)
 {
+    #ifdef DEBUG_LVL_1
+
     check_nullptr(list);
-    
+
+    #endif
+
     switch (list->err)
     {
     case OUT_OF_RANGE_NUMBER:
@@ -516,7 +565,11 @@ void case_err(struct Plist* list)
 
 void plist_print_err(struct Plist* list, size_t error)
 {
+    #ifdef DEBUG_LVL_1
+
     check_nullptr(list);
+
+    #endif
 
     printf("List (ERROR #%x: memory cell: [0x%x] \n"
            "{\n"
@@ -534,7 +587,12 @@ void plist_print_err(struct Plist* list, size_t error)
 
 void plist_sorted(struct Plist* list)
 {   
+    #ifdef DEBUG_LVL_1
+
     check_nullptr(list);
+
+    #endif
+
     VERIFICATION(list);
 
     Plist_t* new_pointer = (Plist_t*) calloc (list->capacity + 1, sizeof(Plist_t));
@@ -573,7 +631,11 @@ void plist_sorted(struct Plist* list)
 
 void plist_dump(struct Plist* list, FILE* file)
 {
+    #ifdef DEBUG_LVL_1
+
     check_nullptr(list);
+
+    #endif
 
     assert(file != nullptr);
 
