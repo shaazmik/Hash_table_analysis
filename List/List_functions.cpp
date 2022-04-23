@@ -3,8 +3,6 @@
 
 #include "List.h"
 
-//#define DEBUG_LVL_1
-
 void check_nullptr(struct Plist* list)
 {
     if (list == nullptr)
@@ -23,7 +21,7 @@ void check_nullptr(struct Plist* list)
 
 void plist_free_fill(struct Plist* list, size_t start_elemenet_index, size_t count)
 {
-    #ifdef DEBUG_LVL_1
+    #ifdef DEBUG_LVL_2
 
     check_nullptr(list);
 
@@ -45,7 +43,7 @@ void plist_free_fill(struct Plist* list, size_t start_elemenet_index, size_t cou
 
 void plist_constructor(struct Plist* list, size_t user_capacity)
 {
-    #ifdef DEBUG_LVL_1
+    #ifdef DEBUG_LVL_2
 
     check_nullptr(list);
 
@@ -88,7 +86,7 @@ void plist_constructor(struct Plist* list, size_t user_capacity)
 
 void plist_destructor(struct Plist* list)
 {
-    #ifdef DEBUG_LVL_1
+    #ifdef DEBUG_LVL_2
 
     check_nullptr(list);
 
@@ -110,13 +108,17 @@ void plist_destructor(struct Plist* list)
 
 size_t plist_insert_start(struct Plist* list, element_t value)
 {
-    #ifdef DEBUG_LVL_1
+    #ifdef DEBUG_LVL_2
 
     check_nullptr(list);
 
     #endif
 
-    VERIFICATION(list);
+    #ifdef DEBUG_LVL_1
+
+    VERIFICATION(list);  
+
+    #endif
     
     size_t pos = list->free_el_index;
 
@@ -131,7 +133,11 @@ size_t plist_insert_start(struct Plist* list, element_t value)
     list->head = pos;
     list->tail = pos;
 
-    VERIFICATION(list);
+    #ifdef DEBUG_LVL_1
+
+    VERIFICATION(list);  
+
+    #endif
 
     return pos;
 }
@@ -139,13 +145,17 @@ size_t plist_insert_start(struct Plist* list, element_t value)
 
 size_t plist_insert_first(struct Plist* list, element_t value)
 {
-    #ifdef DEBUG_LVL_1
+    #ifdef DEBUG_LVL_2
 
     check_nullptr(list);
 
     #endif
 
-    VERIFICATION(list);
+    #ifdef DEBUG_LVL_1
+
+    VERIFICATION(list);  
+
+    #endif
 
     if (list->size == list->capacity)
     {
@@ -172,7 +182,11 @@ size_t plist_insert_first(struct Plist* list, element_t value)
     list->head = pos;
     list->sort = NOT_SORTED;
 
-    VERIFICATION(list);
+    #ifdef DEBUG_LVL_1
+
+    VERIFICATION(list);  
+
+    #endif
 
     return pos;
 }
@@ -180,13 +194,17 @@ size_t plist_insert_first(struct Plist* list, element_t value)
 
 size_t plist_insert_last(struct Plist* list, element_t value)
 {
-    #ifdef DEBUG_LVL_1
+    #ifdef DEBUG_LVL_2
 
     check_nullptr(list);
 
     #endif
 
-    VERIFICATION(list);
+    #ifdef DEBUG_LVL_1
+
+    VERIFICATION(list);  
+
+    #endif
 
     if (list->size == list->capacity)
     {
@@ -213,7 +231,11 @@ size_t plist_insert_last(struct Plist* list, element_t value)
 
     list->tail = pos;
 
-    VERIFICATION(list);
+    #ifdef DEBUG_LVL_1
+
+    VERIFICATION(list);  
+
+    #endif
 
     return pos;
 }
@@ -221,13 +243,17 @@ size_t plist_insert_last(struct Plist* list, element_t value)
 
 size_t plist_insert_before(struct Plist* list, element_t value, size_t number)
 {
-    #ifdef DEBUG_LVL_1
+    #ifdef DEBUG_LVL_2
 
     check_nullptr(list);
 
     #endif
 
-    VERIFICATION(list);
+    #ifdef DEBUG_LVL_1
+
+    VERIFICATION(list);  
+
+    #endif
 
     if (list->size == list->capacity)
     {
@@ -266,7 +292,11 @@ size_t plist_insert_before(struct Plist* list, element_t value, size_t number)
     list->size++;
     list->sort = NOT_SORTED;
 
-    VERIFICATION(list);
+    #ifdef DEBUG_LVL_1
+
+    VERIFICATION(list);  
+
+    #endif
 
     return pos;
 }
@@ -274,13 +304,17 @@ size_t plist_insert_before(struct Plist* list, element_t value, size_t number)
 
 size_t plist_insert_after(struct Plist* list, element_t value, size_t number)
 {
-    #ifdef DEBUG_LVL_1
+    #ifdef DEBUG_LVL_2
 
     check_nullptr(list);
 
     #endif
 
-    VERIFICATION(list);
+    #ifdef DEBUG_LVL_1
+
+    VERIFICATION(list);  
+
+    #endif
 
     if (list->size == list->capacity)
     {
@@ -317,7 +351,11 @@ size_t plist_insert_after(struct Plist* list, element_t value, size_t number)
     list->size++;
     list->sort = NOT_SORTED;
 
-    VERIFICATION(list);
+    #ifdef DEBUG_LVL_1
+
+    VERIFICATION(list);  
+
+    #endif
 
     return pos;
 }
@@ -325,13 +363,17 @@ size_t plist_insert_after(struct Plist* list, element_t value, size_t number)
 
 void plist_delete_el(struct Plist* list, size_t number)
 {
-    #ifdef DEBUG_LVL_1
+    #ifdef DEBUG_LVL_2
 
     check_nullptr(list);
 
     #endif
 
-    VERIFICATION(list);
+    #ifdef DEBUG_LVL_1
+
+    VERIFICATION(list);  
+
+    #endif
 
     if (number != list->tail)
     {
@@ -371,19 +413,27 @@ void plist_delete_el(struct Plist* list, size_t number)
 
     list->size--;
 
-    VERIFICATION(list);
+    #ifdef DEBUG_LVL_1
+
+    VERIFICATION(list);  
+
+    #endif
 }
 
 
 struct Plist_t* plist_resize(struct Plist* list)
 {
-    #ifdef DEBUG_LVL_1
+    #ifdef DEBUG_LVL_2
 
     check_nullptr(list);
 
     #endif
 
-    VERIFICATION(list);
+    #ifdef DEBUG_LVL_1
+
+    VERIFICATION(list);  
+
+    #endif
 
     Plist_t* tmp_pointer = (Plist_t*)realloc(list->data, sizeof(Plist_t) * (list->capacity + 1 + Add_capacity) );
 
@@ -406,14 +456,18 @@ struct Plist_t* plist_resize(struct Plist* list)
 
     }
 
+    #ifdef DEBUG_LVL_1
+
     VERIFICATION(list);  
+
+    #endif
 
     return list->data;
 }
 
 size_t verificator(struct Plist* list)
 {
-    #ifdef DEBUG_LVL_1
+    #ifdef DEBUG_LVL_2
 
     check_nullptr(list);
 
@@ -509,7 +563,7 @@ size_t verificator(struct Plist* list)
 
 void case_err(struct Plist* list)
 {
-    #ifdef DEBUG_LVL_1
+    #ifdef DEBUG_LVL_2
 
     check_nullptr(list);
 
@@ -565,7 +619,7 @@ void case_err(struct Plist* list)
 
 void plist_print_err(struct Plist* list, size_t error)
 {
-    #ifdef DEBUG_LVL_1
+    #ifdef DEBUG_LVL_2
 
     check_nullptr(list);
 
@@ -587,13 +641,17 @@ void plist_print_err(struct Plist* list, size_t error)
 
 void plist_sorted(struct Plist* list)
 {   
-    #ifdef DEBUG_LVL_1
+    #ifdef DEBUG_LVL_2
 
     check_nullptr(list);
 
     #endif
 
-    VERIFICATION(list);
+    #ifdef DEBUG_LVL_1
+
+    VERIFICATION(list);  
+
+    #endif
 
     Plist_t* new_pointer = (Plist_t*) calloc (list->capacity + 1, sizeof(Plist_t));
 
@@ -626,12 +684,16 @@ void plist_sorted(struct Plist* list)
 
     free(old_pointer);
 
-    VERIFICATION(list);
+    #ifdef DEBUG_LVL_1
+
+    VERIFICATION(list);  
+
+    #endif
 }
 
 void plist_dump(struct Plist* list, FILE* file)
 {
-    #ifdef DEBUG_LVL_1
+    #ifdef DEBUG_LVL_2
 
     check_nullptr(list);
 
@@ -680,19 +742,17 @@ void plist_graph(Plist* list)
 
     assert (list != nullptr);
 
-    $
+    #ifdef DEBUG_LVL_1
 
-    VERIFICATION(list);
+    VERIFICATION(list);  
 
-    $
+    #endif
 
     FILE *dump_file = fopen("graph.txt", "w");
 
     printf("%p\n", dump_file);
 
     fputs("digraph structs {\n", dump_file);
-
-    $
 
     fputs("    node [color=red, shape=Msquare, style=\"rounded, filled\"];\n", dump_file);
     

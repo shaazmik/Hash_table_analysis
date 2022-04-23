@@ -14,6 +14,7 @@ typedef struct Phash_table
 
 
 static const size_t Hash_table_capacity = 10;
+static const size_t List_capacity       = 10;
 
 int hash_table_con(Phash_table* hash_table)
 {
@@ -23,6 +24,11 @@ int hash_table_con(Phash_table* hash_table)
     hash_table->capacity = Hash_table_capacity;
     hash_table->hash_el = (struct Plist*)calloc(Hash_table_capacity, sizeof(Plist));
 
+    for (int i = 0; i < Hash_table_capacity; i++)
+    {
+        plist_constructor(hash_table->hash_el, List_capacity);
+    }
+
     return 0;
 }
 
@@ -30,4 +36,6 @@ int hash_table_con(Phash_table* hash_table)
 int main()
 {
 
+    Phash_table hash_table = {};
+    hash_table_con(&hash_table);
 }
