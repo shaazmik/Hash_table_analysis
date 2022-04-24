@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <assert.h>
-#include <List.h>
+#include "./List/List.h"
 
 
 typedef struct Phash_table
@@ -32,10 +32,27 @@ int hash_table_con(Phash_table* hash_table)
     return 0;
 }
 
+int hash_table_des(Phash_table* hash_table)
+{
+    hash_table->cur_size = 0;
+    hash_table->capacity = 0;
+    
+    for (int i = 0; i < Hash_table_capacity; i++)
+    {
+        plist_destructor(hash_table->hash_el); 
+    }
+
+
+    return 0;
+}
 
 int main()
 {
 
     Phash_table hash_table = {};
     hash_table_con(&hash_table);
+
+
+
+    hash_table_des(&hash_table);
 }

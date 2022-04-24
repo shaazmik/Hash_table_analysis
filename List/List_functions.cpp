@@ -625,14 +625,14 @@ void plist_print_err(struct Plist* list, size_t error)
 
     #endif
 
-    printf("List (ERROR #%x: memory cell: [0x%x] \n"
+    printf("List (ERROR #%lx: memory cell: [0x%x] \n"
            "{\n"
-            "\tsize = %u\n" 
-            "\tcapacity = %u\n"
-            "\thead = %u\n" 
-            "\ttail = %u\n"  
+            "\tsize = %lu\n" 
+            "\tcapacity = %lu\n"
+            "\thead = %lu\n" 
+            "\ttail = %lu\n"  
             "\tdata[0x%x]\n"
-            "\tfirst_free_element = %u\n"
+            "\tfirst_free_element = %lu\n"
             "}\n\n\n",  
             error, list->data, list->size,  
             list->capacity, list->head, list->tail, 
@@ -705,25 +705,25 @@ void plist_dump(struct Plist* list, FILE* file)
 
     fprintf(file, "List (ERROR #%x: memory cell: [0x%x] \n"
                     "{\n"
-                    "\tsize = %u\n" 
-                    "\tcapacity = %u\n"
-                    "\thead = %u\n" 
-                    "\ttail = %u\n"  
+                    "\tsize = %lu\n" 
+                    "\tcapacity = %lu\n"
+                    "\thead = %lu\n" 
+                    "\ttail = %lu\n"  
                     "\tdata[0x%x]\n"
-                    "\tfirst_free_element = %u\n",  
+                    "\tfirst_free_element = %lu\n",  
                     list->err, list->data, list->size,  
                     list->capacity, list->head, list->tail, list->data, list->free_el_index);
     
     for (int i = 0; i <= list->capacity; i++)
     {
-        fprintf(file, "\tdata[%d].next = %d \t", i, list->data[i].next);
+        fprintf(file, "\tdata[%d].next = %lu \t", i, list->data[i].next);
     }   
     
     fprintf(file, "\n");
 
     for (int i = 0; i <= list->capacity; i++)
     {
-        fprintf(file, "\tdata[%d].prev = %d \t", i, list->data[i].prev);
+        fprintf(file, "\tdata[%d].prev = %lu \t", i, list->data[i].prev);
     }
 
     fprintf(file, "\n");
@@ -759,15 +759,15 @@ void plist_graph(Plist* list)
     fputs("    rankdir=LR;\n", dump_file);
   
     fprintf(dump_file, "    front [fillcolor=\"%s\", "
-                       "    label=\"HEAD = %d\"];\n",
+                       "    label=\"HEAD = %lu\"];\n",
                        "#40FD14", list->head);
 
     fprintf(dump_file, "    back  [fillcolor=\"%s\", "
-                       "    label=\"TAIL = %d\"];\n",
+                       "    label=\"TAIL = %lu\"];\n",
                        "#40FD14", list->tail);
 
     fprintf(dump_file, "    free  [fillcolor=\"%s\", "
-                       "    label=\"FREE = %d\"];\n",
+                       "    label=\"FREE = %lu\"];\n",
                        "#40FD14", list->free_el_index);
 
     fprintf(dump_file, "    sorted [fillcolor=\"%s\","
@@ -775,7 +775,7 @@ void plist_graph(Plist* list)
                        "#40FD14", list->sort);
 
     fprintf(dump_file, "    size   [fillcolor=\"%s\","
-                       "    label=\"SIZE = %d\"];\n",
+                       "    label=\"SIZE = %lu\"];\n",
                        "#40FD14", list->size);                     
 
     fputs("    node [color=red, style=\"rounded, filled\"];\n", dump_file);
@@ -786,14 +786,14 @@ void plist_graph(Plist* list)
 
     for (size_t index = 0; index <= list->capacity; ++index) 
     {
-        fprintf(dump_file, "    node%d [fillcolor=\"%s\","
-                           "    label=\" %d \\n  p = %d \\n %d \\n n = %d\"];\n",
+        fprintf(dump_file, "    node%lu [fillcolor=\"%s\","
+                           "    label=\" %lu \\n  p = %lu \\n %d \\n n = %lu\"];\n",
                                 index, "#40FD14", index,
                                 (list->data[index].prev == -1) ? -1 : list->data[index].prev,
                                 list->data[index].value, list->data[index].next);
         if (index > 0)
         {
-            fprintf(dump_file, "    node%d -> node%d;\n", index - 1, index);
+            fprintf(dump_file, "    node%lu -> node%lu;\n", index - 1, index);
         }
     }   
 
@@ -805,12 +805,12 @@ void plist_graph(Plist* list)
         {
         if (list->data[index].next != 0)
         {
-        fprintf(dump_file, "    node%d: <n> -> node%d;\n", index, list->data[index].next);
+        fprintf(dump_file, "    node%lu: <n> -> node%lu;\n", index, list->data[index].next);
         }
 
         if (list->data[index].prev != -1 && list->data[index].prev != 0)  
         {
-        fprintf(dump_file, "    node%d: <p> -> node%d;\n", index, list->data[index].prev);
+        fprintf(dump_file, "    node%lu: <p> -> node%lu;\n", index, list->data[index].prev);
         }
 
         fputs("\n", dump_file);
@@ -818,9 +818,9 @@ void plist_graph(Plist* list)
         }
     }
 
-    fprintf(dump_file, "    front -> node%d; \n", list->head);
-    fprintf(dump_file, "    back  -> node%d; \n", list->tail );
-    fprintf(dump_file, "    free  -> node%d; \n", list->free_el_index );
+    fprintf(dump_file, "    front -> node%lu; \n", list->head);
+    fprintf(dump_file, "    back  -> node%lu; \n", list->tail );
+    fprintf(dump_file, "    free  -> node%lu; \n", list->free_el_index );
 
     fputs("}\n", dump_file);
 
