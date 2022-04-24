@@ -43,7 +43,7 @@ typedef double element_t;
 
 #define VERIFICATION(plist)                                                                     \
 {                                                                                               \
-    if (verificator(plist) != OK_LIST)                                                               \
+    if (verificator_plist(plist) != OK_LIST)                                                               \
     {                                                                                           \
         FILE* log = fopen("log.txt", "a");                                                      \
         assert(log != nullptr);                                                                 \
@@ -142,7 +142,7 @@ void plist_delete_el(struct Plist* list, size_t number);
 
 struct Plist_t* plist_resize(struct Plist* list);
 
-size_t verificator(struct Plist* list);
+size_t verificator_plist(struct Plist* list);
 
 void plist_print_err(struct Plist* list, size_t error);
 

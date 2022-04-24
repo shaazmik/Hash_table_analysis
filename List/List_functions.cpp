@@ -465,7 +465,7 @@ struct Plist_t* plist_resize(struct Plist* list)
     return list->data;
 }
 
-size_t verificator(struct Plist* list)
+size_t verificator_plist(struct Plist* list)
 {
     #ifdef DEBUG_LVL_2
 
