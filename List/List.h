@@ -43,7 +43,7 @@ typedef double element_t;
 
 #define VERIFICATION(plist)                                                                     \
 {                                                                                               \
-    if (verificator(plist) != OK)                                                               \
+    if (verificator(plist) != OK_LIST)                                                               \
     {                                                                                           \
         FILE* log = fopen("log.txt", "a");                                                      \
         assert(log != nullptr);                                                                 \
@@ -99,7 +99,7 @@ struct Plist
 
 enum plist_errors
 {
-    OK                        = 0x0001,
+    OK_LIST                   = 0x0001,
     OUT_OF_RANGE_NUMBER       = 0x09EA,
     ERR_NULLPTR               = 0xFFFF,
     NOT_SORTED                = 0XFF00,

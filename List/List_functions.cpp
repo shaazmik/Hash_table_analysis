@@ -59,7 +59,7 @@ void plist_constructor(struct Plist* list, size_t user_capacity)
     list->capacity = user_capacity;
     list->free_el_index = 1;
     list->sort = SORTED;
-    list->err = OK;
+    list->err = OK_LIST;
     list->size = 0;
 
     list->data = (Plist_t*)calloc(1 + user_capacity, sizeof(Plist_t));
@@ -557,7 +557,7 @@ size_t verificator(struct Plist* list)
 
     }
 
-    return OK;
+    return OK_LIST;
 }
 
 
