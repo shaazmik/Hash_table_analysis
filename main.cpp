@@ -24,10 +24,10 @@ enum Phash_table_errors
 {                                                               \
     assert(phash_table != nullptr);                             \
                                                                 \
-    if (phash_verificator(phash_table) != OK_HASH_TABLE)        \
+    if (phash_table_verificator(phash_table) != OK_HASH_TABLE)  \
     {                                                           \
         fprintf(stderr, "ERROR CHECK <log.txt>\n");             \
-        phash_dump(phash_table);                                \
+        phash_table_dump(phash_table);                          \
         fprintf(stderr, "ABORTED ON %u\n", __LINE__);           \
         abort();                                                \
     }                                                           \
@@ -40,11 +40,12 @@ typedef struct Phash_table
 
     size_t capacity = 0;
     size_t num_of_el = 0;
-    struct Plist* hash_el;
 
-    int (*hash_func)(char*);
+    struct Plist* hash_list;
 
-    size_t error         = OK_HASH_TABLE;
+    size_t (*hash_func)(char*);
+
+    size_t error = OK_HASH_TABLE;
 
     long long right_canary;
 }Phash_table;
@@ -54,7 +55,7 @@ static const size_t Hash_table_capacity = 100;
 static const size_t List_capacity       = 10;
 static const size_t Canarias            = 1337;
 
-size_t phash_verificator(Phash_table* hash_table)
+size_t phash_table_verificator(Phash_table* hash_table)
 {
     assert(hash_table != nullptr);
 
@@ -79,11 +80,11 @@ size_t phash_verificator(Phash_table* hash_table)
 }
 
 
-void phash_dump(Phash_table* hash_table)
+void phash_table_dump(Phash_table* hash_table)
 {
     assert(hash_table != nullptr);
 
-    FILE* log = fopen("log.txt", "a+");
+    FILE* log = fopen("log.txt", "w+");
 
     if (log == nullptr)
     {
@@ -122,6 +123,10 @@ void phash_dump(Phash_table* hash_table)
     fclose(log);
 }
 
+size_t hash_first(char* str)
+{
+    return str[0];
+}
 
 int phash_table_con(Phash_table* hash_table)
 {
@@ -131,14 +136,13 @@ int phash_table_con(Phash_table* hash_table)
     hash_table->capacity     = Hash_table_capacity;
     hash_table->left_canary  = Canarias;
     hash_table->right_canary = Canarias;
-    hash_table->hash_el = (struct Plist*)calloc(Hash_table_capacity, sizeof(Plist));
+    hash_table->hash_list = (struct Plist*)calloc(Hash_table_capacity, sizeof(Plist));
 
-    //PUT HEAR YOUR HASH FUNC
-
+    hash_table->hash_func = hash_first; //HASH DECLARATION
 
     for (int i = 0; i < Hash_table_capacity; i++)
     {
-        plist_constructor(hash_table->hash_el, List_capacity);
+        plist_constructor(hash_table->hash_list + i, List_capacity);
     }
 
     #ifdef PROTECTION
@@ -166,13 +170,22 @@ int phash_table_des(Phash_table* hash_table)
 
     for (int i = 0; i < Hash_table_capacity; i++)
     {
-        plist_destructor(hash_table->hash_el); 
+        plist_destructor(hash_table->hash_list + i); 
     }
 
     return 0;
 }
 
 
+int phash_table_insert_el(Phash_table* hash_table, char* word)
+{
+    hash_table->num_of_el += 1;
+    int offset = hash_table->hash_func(word) % hash_table->capacity;
+
+    plist_insert_last(hash_table->hash_list + offset, 1337);
+
+    return 0;
+}
 
 int main()
 {
@@ -180,6 +193,12 @@ int main()
     Phash_table hash_table = {};
 
     phash_table_con(&hash_table);
+
+    char word[8] = "balumba";
+
+    printf("%d", hash_first(word));
+
+  //  phash_table_insert_el(&hash_table, )
 
     phash_table_des(&hash_table);
 }
