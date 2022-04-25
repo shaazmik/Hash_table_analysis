@@ -17,7 +17,7 @@ enum Phash_table_errors
 
 typedef struct Phash_table
 {
-    long long left_canorea  = 1337;
+    long long left_canary;
 
     size_t capacity = 0;
     size_t num_of_el = 0;
@@ -27,12 +27,13 @@ typedef struct Phash_table
 
     size_t error         = OK_HASH_TABLE;
 
-    long long right_canorea = 1338;
+    long long right_canary;
 }Phash_table;
 
 
 static const size_t Hash_table_capacity = 100;
 static const size_t List_capacity       = 10;
+static const size_t Canarias            = 1337;
 
 int verificator_phash(Phash_table* hash_table)
 {
@@ -45,11 +46,11 @@ int verificator_phash(Phash_table* hash_table)
     {
         hash_table->error = WRONG_CAPACITY;
     }
-    if (hash_table->left_canorea != 1337)
+    if (hash_table->left_canary != Canarias)
     {
         hash_table->error = LEFT_CANOREA_DEAD;
     }
-    if (hash_table->left_canorea != 1338)
+    if (hash_table->left_canary != Canarias)
     {
         hash_table->error = RIGHT_CANOREA_DEAD;
     }
@@ -60,8 +61,10 @@ int hash_table_con(Phash_table* hash_table)
 {
     assert(hash_table != nullptr);
 
-    hash_table->num_of_el = 0;
-    hash_table->capacity = Hash_table_capacity;
+    hash_table->num_of_el    = 0;
+    hash_table->capacity     = Hash_table_capacity;
+    hash_table->left_canary  = Canarias;
+    hash_table->right_canary = Canarias;
     hash_table->hash_el = (struct Plist*)calloc(Hash_table_capacity, sizeof(Plist));
 
     for (int i = 0; i < Hash_table_capacity; i++)
@@ -74,9 +77,11 @@ int hash_table_con(Phash_table* hash_table)
 
 int hash_table_des(Phash_table* hash_table)
 {
-    hash_table->num_of_el = 0;
-    hash_table->capacity = 0;
-    
+    hash_table->num_of_el    = 0;
+    hash_table->capacity     = 0;
+    hash_table->left_canary  = Otrava;
+    hash_table->right_canary = Otrava;
+
     for (int i = 0; i < Hash_table_capacity; i++)
     {
         plist_destructor(hash_table->hash_el); 
