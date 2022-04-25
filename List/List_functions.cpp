@@ -57,7 +57,7 @@ void plist_constructor(struct Plist* list, size_t user_capacity)
     }
 
     list->capacity = user_capacity;
-    list->free_el_index = 1;
+    list->free_el_index = 1;                      // 0 element needs for system purposes
     list->sort = SORTED;
     list->err = OK_LIST;
     list->size = 0;
