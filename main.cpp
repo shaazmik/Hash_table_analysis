@@ -6,13 +6,13 @@
 
 enum Phash_table_errors
 {
-    OK_HASH_TABLE      =  1,
     NULLPTR            = -1,
-    WRONG_CAPACITY     = 0x11AA,
-    WRONG_CURRENT_SIZE = 0x11BB,
-    SIZE_MORE_CAPACITY = 0x11CC,
-    LEFT_CANOREA_DEAD  = 0x1F,
-    RIGHT_CANOREA_DEAD = 0x2F,
+    OK_HASH_TABLE      =  16,
+    WRONG_CAPACITY     =  17,
+    WRONG_CURRENT_SIZE =  18,
+    SIZE_MORE_CAPACITY =  19,
+    LEFT_CANOREA_DEAD  =  20,
+    RIGHT_CANOREA_DEAD =  21,
 };
 
 typedef struct Phash_table
@@ -22,8 +22,8 @@ typedef struct Phash_table
     size_t capacity = 0;
     size_t num_of_el = 0;
     struct Plist* hash_el;
-    
-    //TODO pointer on hash function
+
+    int (*hash_func)(char*);
 
     size_t error         = OK_HASH_TABLE;
 
@@ -37,6 +37,8 @@ static const size_t Canarias            = 1337;
 
 int verificator_phash(Phash_table* hash_table)
 {
+    assert(hash_table != nullptr);
+
     if (hash_table->num_of_el < 0)
     {
         hash_table->error = WRONG_CURRENT_SIZE;
@@ -54,6 +56,26 @@ int verificator_phash(Phash_table* hash_table)
     {
         hash_table->error = RIGHT_CANOREA_DEAD;
     }
+
+    return hash_table->error;
+}
+
+
+void dump(Phash_table* hash_table)
+{
+    assert(hash_table != nullptr);
+
+    FILE* log = fopen("log.txt", "w+");
+
+    switch (hash_table->error)
+    {
+    case (NULLPTR):
+        /* code */
+        break;
+    
+    default:
+        break;
+    }
 }
 
 
@@ -66,6 +88,9 @@ int hash_table_con(Phash_table* hash_table)
     hash_table->left_canary  = Canarias;
     hash_table->right_canary = Canarias;
     hash_table->hash_el = (struct Plist*)calloc(Hash_table_capacity, sizeof(Plist));
+
+    //PUT HEAR YOUR HASH FUNC
+
 
     for (int i = 0; i < Hash_table_capacity; i++)
     {
