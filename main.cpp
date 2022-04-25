@@ -1,8 +1,13 @@
+#define $ fprintf(stderr, ">>> %d:\n", __LINE__);
+
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <assert.h>
 #include "./List/List.h"
 
+
+#define PROTECTION
 
 enum Phash_table_errors
 {
@@ -10,10 +15,24 @@ enum Phash_table_errors
     OK_HASH_TABLE      =  16,
     WRONG_CAPACITY     =  17,
     WRONG_CURRENT_SIZE =  18,
-    SIZE_MORE_CAPACITY =  19,
-    LEFT_CANOREA_DEAD  =  20,
-    RIGHT_CANOREA_DEAD =  21,
+    LEFT_CANARY_DEAD   =  19,
+    RIGHT_CANARY_DEAD  =  20,
 };
+
+
+#define VERIFICATION_PHASH(phash_table)                         \
+{                                                               \
+    assert(phash_table != nullptr);                             \
+                                                                \
+    if (phash_verificator(phash_table) != OK_HASH_TABLE)        \
+    {                                                           \
+        fprintf(stderr, "ERROR CHECK <log.txt>\n");             \
+        phash_dump(phash_table);                                \
+        fprintf(stderr, "ABORTED ON %u\n", __LINE__);           \
+        abort();                                                \
+    }                                                           \
+}                                                               \
+
 
 typedef struct Phash_table
 {
@@ -35,51 +54,76 @@ static const size_t Hash_table_capacity = 100;
 static const size_t List_capacity       = 10;
 static const size_t Canarias            = 1337;
 
-int verificator_phash(Phash_table* hash_table)
+size_t phash_verificator(Phash_table* hash_table)
 {
     assert(hash_table != nullptr);
 
     if (hash_table->num_of_el < 0)
     {
         hash_table->error = WRONG_CURRENT_SIZE;
-        //dump();
     }
-    if (hash_table->capacity < 0)
+    else if (hash_table->capacity < 0)
     {
         hash_table->error = WRONG_CAPACITY;
     }
-    if (hash_table->left_canary != Canarias)
+    else if (hash_table->left_canary != Canarias)
     {
-        hash_table->error = LEFT_CANOREA_DEAD;
+        hash_table->error = LEFT_CANARY_DEAD;
     }
-    if (hash_table->left_canary != Canarias)
+    else if (hash_table->left_canary != Canarias)
     {
-        hash_table->error = RIGHT_CANOREA_DEAD;
+        hash_table->error = RIGHT_CANARY_DEAD;
     }
 
     return hash_table->error;
 }
 
 
-void dump(Phash_table* hash_table)
+void phash_dump(Phash_table* hash_table)
 {
     assert(hash_table != nullptr);
 
-    FILE* log = fopen("log.txt", "w+");
+    FILE* log = fopen("log.txt", "a+");
+
+    if (log == nullptr)
+    {
+        printf("ERROR: LOG FILE NOT FOUND\n");
+        abort();
+    }
 
     switch (hash_table->error)
     {
     case (NULLPTR):
-        /* code */
+        fprintf(log, "ERROR: NULLPTR\n");
         break;
-    
+
+    case (WRONG_CAPACITY):
+        fprintf(log, "ERROR: WRONG_CAPACITY\n");
+        break;
+
+    case (WRONG_CURRENT_SIZE):
+        fprintf(log, "ERROR: WRONT_CURRENT_SIZE\n");
+        break;
+
+    case (LEFT_CANARY_DEAD):
+        fprintf(log, "ERROR: LEFT_CANARY_DEAD\n"
+                     "CANARY VALUE:%lld\n", hash_table->left_canary);
+        break;
+
+    case (RIGHT_CANARY_DEAD):
+        fprintf(log, "ERROR: RIGHT_CANARY_DEAD\n"
+                     "CANARY VALUE:%lld\n", hash_table->right_canary);
+        break;
+        
     default:
         break;
     }
+
+    fclose(log);
 }
 
 
-int hash_table_con(Phash_table* hash_table)
+int phash_table_con(Phash_table* hash_table)
 {
     assert(hash_table != nullptr);
 
@@ -97,11 +141,24 @@ int hash_table_con(Phash_table* hash_table)
         plist_constructor(hash_table->hash_el, List_capacity);
     }
 
+    #ifdef PROTECTION
+
+    VERIFICATION_PHASH(hash_table);
+
+    #endif
+
     return 0;
 }
 
-int hash_table_des(Phash_table* hash_table)
+int phash_table_des(Phash_table* hash_table)
 {
+
+    #ifdef PROTECTION
+
+    VERIFICATION_PHASH(hash_table);
+
+    #endif
+
     hash_table->num_of_el    = 0;
     hash_table->capacity     = 0;
     hash_table->left_canary  = Otrava;
@@ -122,7 +179,7 @@ int main()
 
     Phash_table hash_table = {};
 
-    hash_table_con(&hash_table);
+    phash_table_con(&hash_table);
 
-    hash_table_des(&hash_table);
+    phash_table_des(&hash_table);
 }
