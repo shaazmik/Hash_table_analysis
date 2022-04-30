@@ -307,10 +307,12 @@ size_t plist_insert_before(struct Plist* list, element_t value, size_t number)
 
     list->free_el_index = list->data[pos].next;
 
-    list->data[pos].next  = number;
-    list->data[pos].prev  = list->data[number].prev;
-    list->data[pos].value = value;
-
+    list->data[pos].next    = number;
+    list->data[pos].prev    = list->data[number].prev;
+    list->data[pos].value   = value;
+    #ifdef String_t
+    list->data[pos].len_str = strlen(value);
+    #endif
     list->data[list->data[number].prev].next = pos;
     list->data[number].prev = pos;
     
@@ -367,9 +369,12 @@ size_t plist_insert_after(struct Plist* list, element_t value, size_t number)
 
     list->free_el_index = list->data[pos].next;
 
-    list->data[pos].next  = list->data[number].next;
-    list->data[pos].prev  = number;
-    list->data[pos].value = value;
+    list->data[pos].next    = list->data[number].next;
+    list->data[pos].prev    = number;
+    list->data[pos].value   = value;
+    #ifdef String_t
+    list->data[pos].len_str = strlen(value);
+    #endif
 
     list->data[list->data[number].next].prev = pos;
     list->data[number].next                  = pos;
@@ -705,7 +710,10 @@ void plist_sorted(struct Plist* list)
 
     for (size_t index = 1, current_element = list->head; index <= list->size; ++index, current_element = (list->data)[current_element].next)
     {
-        new_pointer[index].value = (list->data)[current_element].value;
+        new_pointer[index].value   = (list->data)[current_element].value;
+        #ifdef String_t
+        new_pointer[index].len_str = (list->data)[current_element].len_str;
+        #endif
     }
 
 
