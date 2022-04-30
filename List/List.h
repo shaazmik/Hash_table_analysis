@@ -4,7 +4,7 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "assert.h"
-
+#include "string.h"
 //=====================================DEBUG_LEVELS============================================
 
 #define DEBUG_LVL_1
@@ -13,7 +13,7 @@
 //=============================================================================================
 
 
-#define Int_t
+#define String_t
 
 //============================================================================================
 
@@ -71,6 +71,12 @@ const size_t Add_capacity = 4;
 
 struct Plist_t
 {
+    #ifdef String_t
+
+    size_t len_str;
+
+    #endif
+
     element_t value;
 
     size_t next;
@@ -115,9 +121,14 @@ enum plist_errors
 };
 
 
+#ifdef String_t
+const  element_t Otrava_str = (char*)(1337); 
+const  size_t    Otrava     = -1337;
+#endif
 
-const  element_t Otrava = -1337; 
-
+#ifndef String_t
+const element_t Otrava  = -1337;
+#endif
 //============================================================================================
 
 void check_nullptr(struct Plist* list);

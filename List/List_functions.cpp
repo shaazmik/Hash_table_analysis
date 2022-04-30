@@ -31,10 +31,21 @@ void plist_free_fill(struct Plist* list, size_t start_elemenet_index, size_t cou
     {
         list->data[i].prev = -1;
         list->data[i].next = i + 1;
+        #ifdef String_t
+        list->data[i].value = Otrava_str;
+        list->data[i].len_str = -1;
+        #endif
+        #ifndef String_t
         list->data[i].value = Otrava;
+        #endif
     }
-
+    #ifdef String_t
+    list->data[count].value = Otrava_str;
+    list->data[count].len_str = -1;
+    #endif
+    #ifndef String_t
     list->data[count].value = Otrava;
+    #endif
     list->data[count].prev  = -1;
     list->data[count].next  = 0;
 
@@ -77,7 +88,13 @@ void plist_constructor(struct Plist* list, size_t user_capacity)
     list->tail = 0;
     list->data[0].next = 0;
     list->data[0].prev = 0;
-    list->data[0].value = Otrava;    
+    #ifdef String_t
+    list->data[0].value = Otrava_str;
+    list->data[0].len_str = -1;
+    #endif 
+    #ifndef String_t
+    list->data[0].value = Otrava;
+    #endif    
 
     plist_free_fill(list, 1, list->capacity);
 
@@ -124,9 +141,12 @@ size_t plist_insert_start(struct Plist* list, element_t value)
 
     list->free_el_index = list->data[pos].next;
 
-    list->data[pos].next  = 0;
-    list->data[pos].prev  = 0;
-    list->data[pos].value = value;
+    list->data[pos].next    = 0;
+    list->data[pos].prev    = 0;
+    list->data[pos].value   = value;
+    #ifdef String_t
+    list->data[pos].len_str = strlen(value);
+    #endif
 
     list->size++;
 
@@ -172,9 +192,12 @@ size_t plist_insert_first(struct Plist* list, element_t value)
 
     list->free_el_index = list->data[pos].next;
 
-    list->data[pos].next  = list->head;
-    list->data[pos].prev  = list->data[list->head].prev;
-    list->data[pos].value = value;
+    list->data[pos].next    = list->head;
+    list->data[pos].prev    = list->data[list->head].prev;
+    list->data[pos].value   = value;
+    #ifdef String_t
+    list->data[pos].len_str = strlen(value);
+    #endif
 
     list->data[list->head].prev = pos;
 
@@ -224,6 +247,9 @@ size_t plist_insert_last(struct Plist* list, element_t value)
     list->data[pos].next        = 0;
     list->data[pos].prev        = list->tail;
     list->data[pos].value       = value;
+    #ifdef String_t
+    list->data[pos].len_str     = strlen(value);
+    #endif
 
     list->data[list->tail].next = pos;
 
@@ -404,8 +430,13 @@ void plist_delete_el(struct Plist* list, size_t number)
             list->data[list->data[number].prev].next = list->data[number].next;
         }
     }
-
-    list->data[number].value = Otrava;
+    #ifdef String_t
+    list->data[number].value   = Otrava_str;
+    list->data[number].len_str = -1;
+    #endif
+    #ifndef String_t
+    list->data[number].value   = Otrava;
+    #endif
     list->data[number].next = list->free_el_index;
     list->data[number].prev = -1;
 
@@ -479,8 +510,14 @@ size_t verificator_plist(struct Plist* list)
         return OUT_OF_RANGE_NUMBER;
     }
 
+    #ifdef String_t
+    element_t Otrava_tmp = Otrava_str;
+    #endif
+    #ifndef String_t
+    element_t Otrava_tmp = Otrava_str;
+    #endif
 
-    if ( (list->data[0].value != Otrava) || (list->data[0].prev != 0) || (list->data[0].next != 0) )
+    if ( (list->data[0].value != Otrava_tmp) || (list->data[0].prev != 0) || (list->data[0].next != 0) )
     {
         list->err = ERR_WRONG_ADDRESSING;
         return ERR_WRONG_ADDRESSING;
@@ -488,7 +525,7 @@ size_t verificator_plist(struct Plist* list)
 
     for (int i = 1; i <= list->capacity; i++)
     {
-        if ( (list->data[i].value == Otrava) && (list->data[i].prev != -1))
+        if ( (list->data[i].value == Otrava_tmp) && (list->data[i].prev != -1))
         {
             list->err = ERR_WRONG_FREE_ARG;
             return ERR_WRONG_FREE_ARG;
@@ -657,7 +694,14 @@ void plist_sorted(struct Plist* list)
 
     new_pointer[0].next  = 0;
     new_pointer[0].prev  = 0;
-    new_pointer[0].value = Otrava;
+    
+    #ifdef String_t
+    new_pointer[0].value   = Otrava_str;
+    new_pointer[0].len_str = -1;
+    #endif
+    #ifndef String_t
+    new_pointer[0].value   = Otrava;
+    #endif
 
     for (size_t index = 1, current_element = list->head; index <= list->size; ++index, current_element = (list->data)[current_element].next)
     {
