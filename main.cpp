@@ -184,7 +184,9 @@ int phash_table_insert_el(Phash_table* hash_table, char* word)
     
     printf("%d\n", offset);
 
-    plist_insert_last(hash_table->hash_list + offset, 228);
+    char str[32] = "suka";
+
+    plist_insert_last(hash_table->hash_list + offset, str);
 
     return 0;
 }
@@ -197,14 +199,14 @@ int main()
     phash_table_con(&hash_table);
 
     char word[8]  = "balumba";
-    char word1[8] = "dolbacl";
+    char word1[8] = "colbacl";
 
    // printf("%d", hash_first(word));
 
     phash_table_insert_el(&hash_table, word);
     phash_table_insert_el(&hash_table, word1);
 
-    printf("%d and %d\n",hash_table.hash_list[98].data[1].value, hash_table.hash_list[0].data[1].value);
+    printf("%s and %s\n",hash_table.hash_list[98].data[1].value, hash_table.hash_list[99].data[1].value);
 
     phash_table_des(&hash_table);
 }
