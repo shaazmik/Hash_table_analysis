@@ -514,7 +514,7 @@ size_t verificator_plist(struct Plist* list)
     element_t Otrava_tmp = Otrava_str;
     #endif
     #ifndef String_t
-    element_t Otrava_tmp = Otrava_str;
+    element_t Otrava_tmp = Otrava;
     #endif
 
     if ( (list->data[0].value != Otrava_tmp) || (list->data[0].prev != 0) || (list->data[0].next != 0) )
@@ -694,7 +694,7 @@ void plist_sorted(struct Plist* list)
 
     new_pointer[0].next  = 0;
     new_pointer[0].prev  = 0;
-    
+
     #ifdef String_t
     new_pointer[0].value   = Otrava_str;
     new_pointer[0].len_str = -1;
