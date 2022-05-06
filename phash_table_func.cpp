@@ -78,9 +78,9 @@ int phash_table_con(Phash_table* hash_table)
     hash_table->capacity     = Hash_table_capacity;
     hash_table->left_canary  = Phash_canarias;
     hash_table->right_canary = Phash_canarias;
-    hash_table->hash_list = (struct Plist*)calloc(Hash_table_capacity, sizeof(Plist));
+    hash_table->hash_list    = (struct Plist*)calloc(Hash_table_capacity, sizeof(Plist));
 
-    hash_table->hash_func = hash_first; //HASH DECLARATION
+    hash_table->hash_func = hash_first_ASCII; //HASH DECLARATION
 
     for (int i = 0; i < Hash_table_capacity; i++)
     {
@@ -117,6 +117,8 @@ int phash_table_des(Phash_table* hash_table)
 
     return 0;
 }
+
+
 
 size_t find_file_size(FILE* in)
 {
@@ -204,6 +206,13 @@ int phash_table_insert_el(Phash_table* hash_table, char* word)
     int offset = hash_table->hash_func(word) % hash_table->capacity;
     
     plist_insert_last(hash_table->hash_list + offset, word);
+
+    return 0;
+}
+
+int phash_table_input_func(Phash_table* hash_table, size_t(*hash_func)(char* word))
+{
+    hash_table->hash_func = hash_func;
 
     return 0;
 }

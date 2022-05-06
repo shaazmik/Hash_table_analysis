@@ -21,8 +21,8 @@ enum Phash_table_errors
 };
 
 
-const size_t Hash_table_capacity       = 100;
-const size_t List_capacity             = 10;
+const size_t Hash_table_capacity       = 6900;
+const size_t List_capacity             = 20;
 const size_t Phash_canarias            = 1337;
 
 //===============================================
@@ -77,8 +77,10 @@ int phash_table_input_file(Phash_table* hash_table, FILE* in);
 
 int phash_table_insert_el(Phash_table* hash_table, char* word);
 
+int phash_table_input_func(Phash_table* hash_table, size_t(*hash_func)(char* word));
 
+size_t hash_first_ASCII(char* str);
 
-size_t hash_first(char* str);
+size_t hash_one(char* str);
 
 #endif
