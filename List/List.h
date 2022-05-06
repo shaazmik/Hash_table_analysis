@@ -124,7 +124,7 @@ enum plist_errors
 
 #ifdef String_t
 const  element_t Otrava_str = (char*)(1337); 
-const  size_t    Otrava     = -1337;
+const  long long    Otrava  = -1337;
 #endif
 
 #ifndef String_t

@@ -7,7 +7,7 @@ void check_nullptr(struct Plist* list)
 {
     if (list == nullptr)
     {
-        FILE* log = fopen("log.txt", "a");
+        FILE* log = fopen("log.txt", "w+");
         assert(log != nullptr);
 
         fprintf(log, "List [NULL_PTR_ERROR #%d] [0x000000]\n ", ERR_NULLPTR);
@@ -667,13 +667,13 @@ void plist_print_err(struct Plist* list, size_t error)
 
     #endif
 
-    printf("List (ERROR #%lx: memory cell: [0x%x] \n"
+    printf("List (ERROR #%lx: memory cell: [0x%p] \n"
            "{\n"
             "\tsize = %lu\n" 
             "\tcapacity = %lu\n"
             "\thead = %lu\n" 
             "\ttail = %lu\n"  
-            "\tdata[0x%x]\n"
+            "\tdata[0x%p]\n"
             "\tfirst_free_element = %lu\n"
             "}\n\n\n",  
             error, list->data, list->size,  
@@ -755,13 +755,13 @@ void plist_dump(struct Plist* list, FILE* file)
 
     case_err(list);
 
-    fprintf(file, "List (ERROR #%x: memory cell: [0x%x] \n"
+    fprintf(file, "List (ERROR #%x: memory cell: [0x%p] \n"
                     "{\n"
                     "\tsize = %lu\n" 
                     "\tcapacity = %lu\n"
                     "\thead = %lu\n" 
                     "\ttail = %lu\n"  
-                    "\tdata[0x%x]\n"
+                    "\tdata[0x%p]\n"
                     "\tfirst_free_element = %lu\n",  
                     list->err, list->data, list->size,  
                     list->capacity, list->head, list->tail, list->data, list->free_el_index);
