@@ -80,7 +80,7 @@ int phash_table_con(Phash_table* hash_table)
     hash_table->right_canary = Phash_canarias;
     hash_table->hash_list    = (struct Plist*)calloc(Hash_table_capacity, sizeof(Plist));
 
-    hash_table->hash_func = hash_first_ASCII; //HASH DECLARATION
+    hash_table->hash_func = hash_CRC32; //HASH DECLARATION
 
     for (int i = 0; i < Hash_table_capacity; i++)
     {
