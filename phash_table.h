@@ -165,6 +165,8 @@ int phash_table_insert_el(Phash_table* hash_table, char* word);
 
 int phash_table_input_func(Phash_table* hash_table, size_t(*hash_func)(char* word));
 
+struct Plist* phash_table_find_el(Phash_table* hash_table, char* word, int* num_of_list_el);
+
 size_t hash_first_ASCII(char* str);
 
 size_t hash_one(char* str);

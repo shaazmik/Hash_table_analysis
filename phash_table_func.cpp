@@ -22,7 +22,6 @@ size_t phash_table_verificator(Phash_table* hash_table)
     {
         hash_table->error = RIGHT_CANARY_DEAD;
     }
-
     return hash_table->error;
 }
 
@@ -184,7 +183,6 @@ int phash_table_input_file(Phash_table* hash_table, FILE* in)
     {
         if (*word_start != ' ' && *word_start != '\r' && *word_start != '\n')
         {
-            //TODO redaction for punctuation marks
             *word_end = '\0';
             phash_table_insert_el(hash_table, word_start);
             word_start = word_end + 1;
@@ -203,7 +201,7 @@ int phash_table_input_file(Phash_table* hash_table, FILE* in)
 int phash_table_insert_el(Phash_table* hash_table, char* word)
 {
     hash_table->num_of_el += 1;
-    int offset = hash_table->hash_func(word) % hash_table->capacity;
+    size_t offset = hash_table->hash_func(word) % hash_table->capacity;
     
     plist_insert_last(hash_table->hash_list + offset, word);
 
@@ -215,4 +213,24 @@ int phash_table_input_func(Phash_table* hash_table, size_t(*hash_func)(char* wor
     hash_table->hash_func = hash_func;
 
     return 0;
+}
+
+
+struct Plist* phash_table_find_el(Phash_table* hash_table, char* word, int* num_of_list_el)
+{
+    size_t offset = hash_table->hash_func(word) % hash_table->capacity;
+
+    int flag = 0;
+
+    for (int i = 1; (hash_table->hash_list[offset].size > i) && (flag == 0) ; i++)
+    {
+        if (strcmp(word, hash_table->hash_list[offset].data[i].value) == 0)
+        {
+            flag = i;
+        }
+    }
+
+    *num_of_list_el = flag;
+
+    return hash_table->hash_list + offset;
 }
