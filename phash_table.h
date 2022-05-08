@@ -167,6 +167,8 @@ int phash_table_input_func(Phash_table* hash_table, size_t(*hash_func)(char* wor
 
 struct Plist* phash_table_find_el(Phash_table* hash_table, char* word, int* num_of_list_el);
 
+void phash_table_print_element(Phash_table* hash_table, size_t item_number);
+
 size_t hash_first_ASCII(char* str);
 
 size_t hash_one(char* str);
@@ -178,4 +180,6 @@ size_t hash_sum_of_ASCII(char* str);
 size_t hash_rol(char* str);
 
 size_t hash_CRC32(char* str);
+
+void create_statistic(Phash_table* hash_table);
 #endif

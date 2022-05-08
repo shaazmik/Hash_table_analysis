@@ -158,7 +158,8 @@ char* fill_words_text(size_t file_size, FILE* in)
     while (*start_text != '\0')
     {
         if ((*start_text == '.') || (*start_text == '\n') || (*start_text == '?') ||
-           ( *start_text == '!') || (*start_text == '\r') || (*start_text == ','))
+           ( *start_text == '!') || (*start_text == '\r') || (*start_text == ',') ||
+           ( *start_text == '"') || (*start_text == '\''))
         {
             *start_text = ' ';
         }
@@ -178,13 +179,16 @@ int phash_table_input_file(Phash_table* hash_table, FILE* in)
     char* text_array = fill_words_text(file_size, in);
     char* word_start = text_array;
     char* word_end   = text_array;
+    int   flag       = 0;
 
     while ((word_end = strchr(word_start, ' ')) != nullptr)
     {
-        if (*word_start != ' ' && *word_start != '\r' && *word_start != '\n')
+        if (*word_start != ' ')
         {
             *word_end = '\0';
-            phash_table_insert_el(hash_table, word_start);
+            phash_table_find_el(hash_table, word_start, &flag);
+            if (flag == 0)
+                phash_table_insert_el(hash_table, word_start);
             word_start = word_end + 1;
         }
         else
@@ -192,17 +196,19 @@ int phash_table_input_file(Phash_table* hash_table, FILE* in)
             word_start++;
         }
     }
-
-    phash_table_insert_el(hash_table, word_start);
+    phash_table_find_el(hash_table, word_start, &flag);
+    if (flag == 0) 
+        phash_table_insert_el(hash_table, word_start);
 
     return (*word_start);
 }
 
 int phash_table_insert_el(Phash_table* hash_table, char* word)
 {
-    hash_table->num_of_el += 1;
     size_t offset = hash_table->hash_func(word) % hash_table->capacity;
     
+    hash_table->num_of_el++;
+
     plist_insert_last(hash_table->hash_list + offset, word);
 
     return 0;
@@ -216,21 +222,32 @@ int phash_table_input_func(Phash_table* hash_table, size_t(*hash_func)(char* wor
 }
 
 
-struct Plist* phash_table_find_el(Phash_table* hash_table, char* word, int* num_of_list_el)
+struct Plist* phash_table_find_el(Phash_table* hash_table, char* word, int* item_num_of_list)
 {
     size_t offset = hash_table->hash_func(word) % hash_table->capacity;
 
     int flag = 0;
 
-    for (int i = 1; (hash_table->hash_list[offset].size > i) && (flag == 0) ; i++)
+    for (int i = 1; (hash_table->hash_list[offset].size >= i) && (flag == 0) ; i++)
     {
-        if (strcmp(word, hash_table->hash_list[offset].data[i].value) == 0)
+        if (strncmp(word, hash_table->hash_list[offset].data[i].value, strlen(word) + 1) == 0)
         {
             flag = i;
         }
     }
 
-    *num_of_list_el = flag;
+    *item_num_of_list = flag;
 
     return hash_table->hash_list + offset;
+}
+
+
+void phash_table_print_element(Phash_table* hash_table, size_t item_number)
+{
+    for (int i = 1; i <= hash_table->hash_list[item_number].size; i++)
+    {
+        printf("element: %s\n", hash_table->hash_list[item_number].data[i].value);
+    }
+
+    return;
 }

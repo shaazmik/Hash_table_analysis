@@ -11,14 +11,16 @@ int main()
 
     FILE* in = fopen("War_and_Peace.txt", "rb");
     
-    phash_table_input_file(&hash_table, in);
+    phash_table_input_func(&hash_table, hash_sum_of_ASCII);   
 
-//    char str[15] = "see";
-//    int num_of_list_el = 0;
-//    struct Plist* element  = phash_table_find_el(&hash_table, str, &num_of_list_el);
-//    printf("list num: %p and num of list el:%d\n", element, num_of_list_el);
-//    printf("element is: %s\n", element->data[num_of_list_el].value);
+    phash_table_input_file(&hash_table, in);
     
+   // phash_table_print_element(&hash_table, 3650);    
+
+    printf("number of elements:%ld\n", hash_table.num_of_el);
+
+    create_statistic(&hash_table);
+
     phash_table_des(&hash_table);
 
     fclose(in);

@@ -23,12 +23,13 @@ size_t hash_len_str(char* str)
 
 size_t hash_sum_of_ASCII(char* str)
 {
-    assert(str != nullptr);
-
+    assert(str != nullptr);   
+//2275 //3069 //3650 - intresting elements in hash table
     size_t result = 0;
     while (*str != '\0')
     {
-        result += *str;
+        result += (int)*str;
+        str++;
     }
 
     return result;
@@ -68,3 +69,14 @@ size_t hash_CRC32(char* str)
     return crc;
 }
 
+void create_statistic(Phash_table* hash_table)
+{
+    FILE* out = fopen(".//statistics//results.csv", "w+");
+
+    for (int i = 0; hash_table->capacity > i; i++)
+    {
+        fprintf(out, "%d;%lu\n", i, hash_table->hash_list[i].size);
+    }
+
+    fclose(out);
+}
