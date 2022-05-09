@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <assert.h>
-#include "./List/List.h"
+#include "../List/List.h"
 
 #define PROTECTION
 
@@ -23,8 +23,8 @@ enum Phash_table_errors
 
 //===============================================
 
-const size_t Hash_table_capacity       = 6900;    // 6900  6900 69   // CRC_32 first_ASCII
-const size_t List_capacity             = 20;    // 20    3000 2000 //
+const size_t Hash_table_capacity       = 69;  
+const size_t List_capacity             = 2000;  
 const size_t Phash_canarias            = 1337;
 
 //===============================================
@@ -131,18 +131,18 @@ const unsigned long CRCTable [] = {
 
 //===============================================
 
-#define VERIFICATION_PHASH(phash_table)                         \
-{                                                               \
-    assert(phash_table != nullptr);                             \
-                                                                \
-    if (phash_table_verificator(phash_table) != OK_HASH_TABLE)  \
-    {                                                           \
-        fprintf(stderr, "ERROR CHECK <log.txt>\n");             \
-        phash_table_dump(phash_table);                          \
-        fprintf(stderr, "ABORTED ON %u\n", __LINE__);           \
-        abort();                                                \
-    }                                                           \
-}                                                               \
+#define VERIFICATION_PHASH(phash_table)                              \
+{                                                                    \
+    assert(phash_table != nullptr);                                  \
+                                                                     \
+    if (phash_table_verificator(phash_table) != OK_HASH_TABLE)       \
+    {                                                                \
+        fprintf(stderr, "ERROR CHECK <log_hash.txt>\n");             \
+        phash_table_dump(phash_table);                               \
+        fprintf(stderr, "ABORTED ON %u\n", __LINE__);                \
+        abort();                                                     \
+    }                                                                \
+}                                                                    \
 
 //===============================================
 

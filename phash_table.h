@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <assert.h>
+#include <immintrin.h>
 #include "./List/List.h"
 
 #define PROTECTION
@@ -24,7 +25,7 @@ enum Phash_table_errors
 //===============================================
 
 const size_t Hash_table_capacity       = 6900;    // 6900  6900 69   // CRC_32 first_ASCII
-const size_t List_capacity             = 20;    // 20    3000 2000 //
+const size_t List_capacity             = 20;      // 20    3000 2000 //
 const size_t Phash_canarias            = 1337;
 
 //===============================================

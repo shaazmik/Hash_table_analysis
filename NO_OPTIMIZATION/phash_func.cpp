@@ -71,7 +71,13 @@ size_t hash_CRC32(char* str)
 
 void create_statistic(Phash_table* hash_table)
 {
-    FILE* out = fopen(".//statistics//results.csv", "w+");
+    FILE* out = fopen(".//hash_statistics//results.csv", "w+");
+
+    if (out == nullptr)
+    {
+        printf("Haven't got folder \"hash_statistics\"!!!\n");
+        return;
+    }
 
     for (int i = 0; hash_table->capacity > i; i++)
     {
