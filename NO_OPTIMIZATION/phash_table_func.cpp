@@ -157,8 +157,9 @@ char* fill_words_text(size_t file_size, FILE* in)
 
     while (*start_text != '\0')
     {
-
-        if (strchr(str, *start_text) != nullptr)
+        if ((*start_text == '.') || (*start_text == '\n') || (*start_text == '?') ||
+           ( *start_text == '!') || (*start_text == '\r') || (*start_text == ',') ||
+           ( *start_text == '"') || (*start_text == '\''))
         {
             *start_text = ' ';
         }

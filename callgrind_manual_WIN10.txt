@@ -1,0 +1,5 @@
+launch Xlaunch on WIN10
+launch WSL
+export DISPLAY="$(grep nameserver /etc/resolv.conf | sed 's/nameserver //'):0"
+valgrind --tool=callgrind ./program
+kcachegrind
