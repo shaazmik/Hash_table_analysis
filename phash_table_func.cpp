@@ -225,12 +225,19 @@ struct Plist* phash_table_find_el(Phash_table* hash_table, char* word, int* item
 {
     size_t offset = hash_table->hash_func(word) % hash_table->capacity;
 
+    __m128i string = _mm_loadu_si128 ((__m128i *)word);
+    __m128i listStr {};
+
     int flag = 0;
 
     for (int i = 1; (hash_table->hash_list[offset].size >= i) && (flag == 0) ; i++)
     {
-        if (strncmp(word, hash_table->hash_list[offset].data[i].value, strlen(word) + 1) == 0)
-        {
+        listStr = _mm_loadu_si128 ((__m128i *)hash_table->hash_list[offset].data[i].value);
+
+        int cmp = _mm_cmpestri (string, strlen (word) + 1, listStr, hash_table->hash_list[offset].data[i].len_str + 1, _SIDD_CMP_EQUAL_EACH | _SIDD_CMP_EQUAL_ORDERED | _SIDD_UBYTE_OPS); // | _SIDD_NEGATIVE_POLARITY);
+
+        if (cmp == 0) {
+            
             flag = i;
         }
     }
