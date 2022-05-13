@@ -15,3 +15,9 @@ I had 6 hash functions to consider:
 - sum of the ASCII characters in word
 - ROL
 - CRC32
+
+First of all, we need to determine the number of collisions depending on our hash functions, 
+then take the speed of the programme and the reasons for their changes.
+
+
+### 1. __hash_return_one__
