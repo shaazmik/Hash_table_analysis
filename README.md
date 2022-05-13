@@ -11,6 +11,7 @@ The main point of study is certain hash functions and programme performance depe
 ### To compile:
   ___Main version with optimize___:
   >nasm -f elf64 crc32_optimization.s -o crc32_optimization.o
+ 
   >g++ crc32_optimization.o main.cpp List/List_functions.cpp phash_table_func.cpp phash_func.cpp -mavx2 -O2 -o name_file
 
 ## Task 1: Learning hash functions
