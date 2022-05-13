@@ -1,6 +1,6 @@
 # Hash_table_analysis
 
-## Introduction
+## ___Introduction___
 In this project I have studied how a __hash-table__ based on the __chain method__ works. 
 The main point of study is certain hash functions and programme performance depending on hash functions, table sizes and various loads.
 - Input data: L.N. Tolstoy's text 'War and Peace' (eng. version)
@@ -14,7 +14,7 @@ The main point of study is certain hash functions and programme performance depe
  
   >g++ crc32_optimization.o main.cpp List/List_functions.cpp phash_table_func.cpp phash_func.cpp -mavx2 -O2 -o name_file
 
-## Task 1: Learning hash functions
+## ___Task 1: Learning hash functions___
 
 I had 6 hash functions to consider:
 - always return 1
