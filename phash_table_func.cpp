@@ -1,7 +1,6 @@
 #include "./phash_table.h"
 
 
-
 size_t phash_table_verificator(Phash_table* hash_table)
 {
     assert(hash_table != nullptr);
@@ -79,7 +78,7 @@ int phash_table_con(Phash_table* hash_table)
     hash_table->right_canary = Phash_canarias;
     hash_table->hash_list    = (struct Plist*)calloc(Hash_table_capacity, sizeof(Plist));
 
-    hash_table->hash_func = hash_CRC32; //HASH DECLARATION
+    hash_table->hash_func = hash_CRC32; 
 
     for (int i = 0; i < Hash_table_capacity; i++)
     {
@@ -153,12 +152,11 @@ char* fill_words_text(size_t file_size, FILE* in)
 
     char* start_text = text_array;
 
-    char str[9] = ".!\"\'\r\n,?";
-
     while (*start_text != '\0')
     {
-
-        if (strchr(str, *start_text) != nullptr)
+        if ((*start_text == '.') || (*start_text == '\n') || (*start_text == '?') ||
+           ( *start_text == '!') || (*start_text == '\r') || (*start_text == ',') ||
+           ( *start_text == '"') || (*start_text == '\''))
         {
             *start_text = ' ';
         }
@@ -174,17 +172,21 @@ int phash_table_input_file(Phash_table* hash_table, FILE* in)
     assert(hash_table != nullptr);
     assert(in         != nullptr);
 
-    size_t file_size = find_file_size(in);
-    char* text_array = fill_words_text(file_size, in);
-    char* word_start = text_array;
-    char* word_end   = text_array;
-    int   flag       = 0;
+    size_t file_size  = find_file_size(in);
+    char*  text_array = fill_words_text(file_size, in);
+    char*  word_start = text_array;
+    char*  word_end   = text_array;
+    int    flag       = 0;
 
     while ((word_end = strchr(word_start, ' ')) != nullptr)
     {
         if (*word_start != ' ')
         {
             *word_end = '\0';
+            phash_table_find_el(hash_table, word_start, &flag);
+            phash_table_find_el(hash_table, word_start, &flag);
+            phash_table_find_el(hash_table, word_start, &flag);
+            phash_table_find_el(hash_table, word_start, &flag);
             phash_table_find_el(hash_table, word_start, &flag);
             if (flag == 0)
                 phash_table_insert_el(hash_table, word_start);
@@ -204,7 +206,9 @@ int phash_table_input_file(Phash_table* hash_table, FILE* in)
 
 int phash_table_insert_el(Phash_table* hash_table, char* word)
 {
-    size_t offset = hash_table->hash_func(word) % hash_table->capacity;
+    size_t hash = hash_table->hash_func(word);
+
+    size_t offset = hash % hash_table->capacity;
     
     hash_table->num_of_el++;
 
@@ -236,10 +240,8 @@ struct Plist* phash_table_find_el(Phash_table* hash_table, char* word, int* item
 
         int cmp = _mm_cmpestri (string, strlen (word) + 1, listStr, hash_table->hash_list[offset].data[i].len_str + 1, _SIDD_CMP_EQUAL_EACH | _SIDD_CMP_EQUAL_ORDERED | _SIDD_UBYTE_OPS); // | _SIDD_NEGATIVE_POLARITY);
 
-        if (cmp == 0) {
-            
+        if (cmp == 0) 
             flag = i;
-        }
     }
 
     *item_num_of_list = flag;

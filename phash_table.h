@@ -7,6 +7,8 @@
 #include <immintrin.h>
 #include "./List/List.h"
 
+extern "C" size_t crc32_asm(char* str);
+
 #define PROTECTION
 
 //===============================================
@@ -24,8 +26,8 @@ enum Phash_table_errors
 
 //===============================================
 
-const size_t Hash_table_capacity       = 6900;    // 6900  6900 69   // CRC_32 first_ASCII
-const size_t List_capacity             = 20;      // 20    3000 2000 //
+const size_t Hash_table_capacity       = 6900;    
+const size_t List_capacity             = 200;     
 const size_t Phash_canarias            = 1337;
 
 //===============================================
