@@ -1,7 +1,17 @@
 # Hash_table_analysis
 
-### Introduction
+## Introduction
 In this project I have studied how a __hash-table__ based on the __chain method__ works. 
 The main point of study is certain hash functions and programme performance depending on hash functions, table sizes and various loads.
-- Input: L.N. Tolstoy's text 'War and Peace' (eng. version)
-- Stress Testing: Search for each word in the list (element of Hash Table)
+- Input data: L.N. Tolstoy's text 'War and Peace' (eng. version)
+- Stress Testing: Search for each word in the list 5 times (element of Hash Table)
+
+## Task 1: Learning hash functions
+
+I had 6 hash functions to consider:
+- always return 1
+- value of the first ASCII character
+- string length
+- sum of the ASCII characters in word
+- ROL
+- CRC32
