@@ -21,3 +21,4 @@ then take the speed of the programme and the reasons for their changes.
 
 
 ### 1. __hash_return_one__
+![Image alt](https://github.com/shaazmik/Hash_table_analysis/blob/main/hash_statistics/return1.png)
