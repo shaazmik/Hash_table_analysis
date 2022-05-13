@@ -153,7 +153,6 @@ char* fill_words_text(size_t file_size, FILE* in)
 
     char* start_text = text_array;
 
-    char str[9] = ".!\"\'\r\n,?";
 
     while (*start_text != '\0')
     {
@@ -169,6 +168,7 @@ char* fill_words_text(size_t file_size, FILE* in)
 
     return text_array;
 }
+
 
 int phash_table_input_file(Phash_table* hash_table, FILE* in)
 {
@@ -186,6 +186,10 @@ int phash_table_input_file(Phash_table* hash_table, FILE* in)
         if (*word_start != ' ')
         {
             *word_end = '\0';
+            phash_table_find_el(hash_table, word_start, &flag);
+            phash_table_find_el(hash_table, word_start, &flag);
+            phash_table_find_el(hash_table, word_start, &flag);
+            phash_table_find_el(hash_table, word_start, &flag);
             phash_table_find_el(hash_table, word_start, &flag);
             if (flag == 0)
                 phash_table_insert_el(hash_table, word_start);

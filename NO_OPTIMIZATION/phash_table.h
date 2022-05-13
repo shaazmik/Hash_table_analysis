@@ -23,8 +23,8 @@ enum Phash_table_errors
 
 //===============================================
 
-const size_t Hash_table_capacity       = 69;  
-const size_t List_capacity             = 2000;  
+const size_t Hash_table_capacity       = 6900;  
+const size_t List_capacity             = 200;  
 const size_t Phash_canarias            = 1337;
 
 //===============================================
