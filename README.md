@@ -5,6 +5,8 @@ In this project I have studied how a __hash-table__ based on the __chain method_
 The main point of study is certain hash functions and programme performance depending on hash functions, table sizes and various loads.
 - Input data: L.N. Tolstoy's text 'War and Peace' (eng. version)
 - Stress Testing: Search for each word in the list 5 times (element of Hash Table)
+- Hash table capacity : **6900**
+- List capacity: **200**
 
 ## Task 1: Learning hash functions
 
