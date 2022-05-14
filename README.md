@@ -104,3 +104,22 @@ this hash function can be called "good" in our situation.
 
 
 ### 6. ___CRC32 hash function___
+
+Finally, CRC32 is the best hash function on out list.
+***Implementation***:
+```cpp
+size_t hash_CRC32(char* str)
+{
+    assert(str != nullptr);
+
+    unsigned int crc = 0xFFFFFFFFUL;
+
+    while (*str != '\0')
+    {
+        crc = CRCTable[(crc ^ *(str)) & 0xFF] ^ (crc >> 8);
+        str++;
+    }
+
+    return crc;
+}
+```
