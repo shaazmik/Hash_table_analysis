@@ -95,7 +95,7 @@ size_t hash_rol(char* str)
     return hash;
 }
 ```
-
+![Image alt](https://github.com/shaazmik/Hash_table_analysis/blob/main/hash_statistics/ROL.png)
 ### Opinion:
 This function gives a very small number of collisions. It works very quickly, 
 running time: ___0,92 seconds___
