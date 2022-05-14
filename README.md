@@ -162,4 +162,4 @@ ____
 ![Image alt](https://github.com/shaazmik/Hash_table_analysis/blob/main/analytics/screenshots/NO_OPTIMIZATION.PNG)
 
 Based on this result (the self column), we can see that the function with the highest load is **"phash_table_find_el"**.<br/>
-And the hash function itself accordingly
+And the **hash function** itself accordingly
