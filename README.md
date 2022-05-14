@@ -70,3 +70,9 @@ Obviously, word lengths are limited, so there are plenty of collisions. The runn
 This hash function gives the least amount of collisions, so it works faster than the previous ones. Running time: ___0.117 seconds___.
 Interesting deviations can be seen in the graph. I have checked it and indeed these values correspond to reality. 
 Our test contains words consisting of more than 32 characters, and the ASCII value of a character is really that big **(more than 255)**
+
+
+### 5. ___ROL hash function___
+
+This feature is more interesting than the ones before it.
+To understand how this hash function works, here is a **screenshot of its implementation**.
