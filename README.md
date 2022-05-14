@@ -9,10 +9,17 @@ The main point of study is certain hash functions and programme performance depe
 - List capacity: **200**
 
 ### To compile:
-  ___Main version with optimize___:
+  ___Main version with optimization___:
   >nasm -f elf64 crc32_optimization.s -o crc32_optimization.o
  
   >g++ crc32_optimization.o main.cpp List/List_functions.cpp phash_table_func.cpp phash_func.cpp -mavx2 -O2 -o name_file
+
+  ___Version without optimization___:
+>g++ main.cpp ../List/List_functions.cpp phash_table_func.cpp phash_func.cpp -o a
+
+Also you can compile with flag ```-O2``` for optimization.
+
+____
 
 ## ___Task 1: Learning hash functions___
 
