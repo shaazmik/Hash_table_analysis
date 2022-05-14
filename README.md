@@ -32,7 +32,8 @@ I had 6 hash functions to consider:
 - CRC32
 
 First of all, we need to determine the number of collisions depending on our hash functions, 
-then take the speed of the programme and the reasons for their changes.
+then take the speed of the programme and the reasons for their changes.For clarity, here are the charts for each hash function, 
+which show **the distribution of list lengths depending on the hash table element**:
 
 
 ### 1. ___hash always returns 1___
