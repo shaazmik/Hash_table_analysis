@@ -141,8 +141,8 @@ But I will work with CRC32 as in our case lesser number of matches is much more 
 |first ASCII  |0,673 seconds|
 |length of str|1,725 seconds|
 |sum of ASCII |0,099 seconds|
-|ROL          |0,096 seconds|
-|CRC32        |0,097 seconds|
+|ROL          |0,063 seconds|
+|CRC32        |0,064 seconds|
 
 
 As you can see, the program with ROL is slightly faster, but the variance of ROL is greater than that of CRC32.<br/>
@@ -229,7 +229,7 @@ ____
 As you can see, our function has accelerated by 3m units self. which is an excellent result, <br\>
 but if we talk about more down to earth values, here is a table of the running times. You can find all of the proufs in the ```./analytics/screenshots/``` folder
 
-|WITHOUT OPTIMIZATION|0,096 seconds|
+|WITHOUT OPTIMIZATION|0,064 seconds|
 |--------------------|-------------|
 |WITH -O2            |0,043 seconds|
 |WITH -O2 + AVX2     |0,038 seconds|
