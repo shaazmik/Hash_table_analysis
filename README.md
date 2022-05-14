@@ -2,11 +2,12 @@
 
 ## Table of contents
 
-[1.Introduction](#Introduction)
+[1.Introduction](#Introduction w)
 
 [2.Task 1](#Task 1: Learning hash functions)
 
 [3.Task 2](#Task 2: Optimization)
+
 ## ___Introduction___
 In this project I have studied how a __hash-table__ based on the __chain method__ works. <br/>
 The main point of study is certain hash functions and programme performance depending on hash functions, table sizes and various loads. <br/>
