@@ -233,3 +233,5 @@ but if we talk about more down to earth values, here is a table of the running t
 |--------------------|-------------|
 |WITH -O2            |0,043 seconds|
 |WITH -O2 + AVX2     |0,038 seconds|
+
+### Total increase of 13,16%
