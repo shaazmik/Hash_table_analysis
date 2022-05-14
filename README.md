@@ -139,7 +139,7 @@ size_t hash_CRC32(char* str)
 ![Image alt](https://github.com/shaazmik/Hash_table_analysis/blob/main/hash_statistics/CRC32.png)
 
 ### Opinion:
-This hash function is very interesting, it gives the least amount of collisions, which will result in a big performance gain on more data. <br/>
+This hash function is interesting, it gives the least amount of collisions, which will result in a big performance gain on more data. <br/>
 Especially when **the stress testing** is to find items in a list. However, in our case the program performs slightly less than the ROL hash function. <br/>
 This is due to the timing of the hash function itself. <br/>
 Running time: ___0,97 seconds___. <br/>
