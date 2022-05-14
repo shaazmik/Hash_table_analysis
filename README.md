@@ -98,7 +98,7 @@ size_t hash_rol(char* str)
 ![Image alt](https://github.com/shaazmik/Hash_table_analysis/blob/main/hash_statistics/ROL.png)
 ### Opinion:
 This function gives a very small number of collisions. It works very quickly, 
-running time: ___0,92 seconds___
+running time: ___0,96 seconds___
 There are so few matches that the list does not have to expand and the search is very fast, 
 this hash function can be called "good" in our situation.
 
@@ -130,7 +130,7 @@ size_t hash_CRC32(char* str)
 This hash function is very interesting, it gives the least amount of collisions, which will result in a big performance gain on more data. 
 Especially when **the stress testing** is to find items in a list. However, in our case the program performs slightly less than the ROL hash function. 
 This is due to the timing of the hash function itself.
-Running time: ___0,101 seconds___.
+Running time: ___0,97 seconds___.
 **ROL** hash function works faster than **CRC32**. 
 But I will work with CRC32 as in our case lesser number of matches is much more useful than the hash algorithm itself.
 
@@ -142,4 +142,4 @@ But I will work with CRC32 as in our case lesser number of matches is much more 
 |length of str|1,725 seconds|
 |sum of ASCII |0,099 seconds|
 |ROL          |0,096 seconds|
-|CRC32        |0,101 seconds|
+|CRC32        |0,097 seconds|
