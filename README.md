@@ -54,3 +54,10 @@ since the length of the list is huge, so the check takes a very long time.
 
 ### Opinion:
 The running time of a programme with this hash function is ___0,673 seconds___. The reasons for the load and the speed of the programme are the same as in the first case.However, there are fewer collisions, so the speed is higher.
+
+### 3. ___hash returns length of string___
+
+![Image alt](https://github.com/shaazmik/Hash_table_analysis/blob/main/hash_statistics/length%20of%20string.png)
+
+### Opinion:
+
