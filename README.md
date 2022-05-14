@@ -239,7 +239,7 @@ ____
 
 ![Image alt](https://github.com/shaazmik/Hash_table_analysis/blob/main/analytics/screenshots/INTRINSICS_O2.PNG)
 
-As you can see, our function has accelerated by **3 million** units self. which is an excellent result, <br\>
+As you can see, our function has accelerated by **3 million** units self. which is an excellent result, <br/>
 but if we talk about more down to earth values, here is a table of the running times. You can find all of the proufs in the ```./analytics/screenshots/``` folder
 
 |WITHOUT OPTIMIZATION|0,064 seconds|
@@ -305,6 +305,17 @@ This optimisation is therefore sufficient to improve performance. The results of
 **Finally, reduce the number of function calls and various cosmetic changes** <br/>
 
 ## Total:
+
+|**HASH FUNCTION**|**TIME**|
+|-------------|-------------|
+|return 1     |6,287 seconds|
+|first ASCII  |0,673 seconds|
+|length of str|1,725 seconds|
+|sum of ASCII |0,099 seconds|
+|ROL          |0,063 seconds|
+|CRC32        |0,064 seconds|
+
+### CRC32 is the most accurate function with the lowest correlation.
 
 |WITHOUT OPTIMIZATION |0,064 seconds|
 |---------------------|-------------|
