@@ -143,3 +143,4 @@ But I will work with CRC32 as in our case lesser number of matches is much more 
 |sum of ASCII |0,099 seconds|
 |ROL          |0,096 seconds|
 |CRC32        |0,097 seconds|
+
