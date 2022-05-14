@@ -1,6 +1,10 @@
 # Hash_table_analysis
 
-## ___Introduction___
+## Table of contents
+
+[Introduction](#Introduction)
+
+## Introduction
 In this project I have studied how a __hash-table__ based on the __chain method__ works. <br/>
 The main point of study is certain hash functions and programme performance depending on hash functions, table sizes and various loads. <br/>
 - Input data: L.N. Tolstoy's text 'War and Peace' (eng. version)
