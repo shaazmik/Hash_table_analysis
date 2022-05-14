@@ -165,3 +165,5 @@ Based on this result (the self column), we can see that the function with the hi
 And the **hash function** itself accordingly
 
 ### For clarity, the results of compiler optimisation with the ```-O2``` flag are as follows
+
+![Image alt](https://github.com/shaazmik/Hash_table_analysis/blob/main/analytics/screenshots/O2.PNG)
