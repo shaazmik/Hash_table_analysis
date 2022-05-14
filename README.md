@@ -15,7 +15,7 @@ The main point of study is certain hash functions and programme performance depe
   >g++ crc32_optimization.o main.cpp List/List_functions.cpp phash_table_func.cpp phash_func.cpp -mavx2 -O2 -o name_file
 
   ___Version without optimization___:
->g++ main.cpp ../List/List_functions.cpp phash_table_func.cpp phash_func.cpp -o a
+>g++ main.cpp ../List/List_functions.cpp phash_table_func.cpp phash_func.cpp -o name_file
 
 Also you can compile with flag ```-O2``` for optimization.
 
