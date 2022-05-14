@@ -95,3 +95,12 @@ size_t hash_rol(char* str)
     return hash;
 }
 ```
+
+### Opinion:
+This function gives a very small number of collisions. It works very quickly, 
+running time: ___0,92 seconds___
+There are so few matches that the list does not have to expand and the search is very fast, 
+this hash function can be called "good" in our situation.
+
+
+### 6. ___CRC32 hash function___
