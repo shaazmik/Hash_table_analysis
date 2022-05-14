@@ -60,4 +60,8 @@ The running time of a programme with this hash function is ___0,673 seconds___. 
 ![Image alt](https://github.com/shaazmik/Hash_table_analysis/blob/main/hash_statistics/length%20of%20string.png)
 
 ### Opinion:
+Obviously, word lengths are limited, so there are plenty of collisions. The running time of the programme: ___1.725 seconds___
 
+### 4. ___hash returns sum of ASCII characters___
+
+![Image alt](https://github.com/shaazmik/Hash_table_analysis/blob/main/hash_statistics/sum%20of%20ASCII%20symbols.png)
