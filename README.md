@@ -167,7 +167,8 @@ And the **hash function** itself accordingly
 ### For clarity, the results of compiler optimisation with the ```-O2``` flag are as follows
 
 ![Image alt](https://github.com/shaazmik/Hash_table_analysis/blob/main/analytics/screenshots/O2.PNG)
-
+____
+____
 ### ___The original "phash_table_find_el" version ___
 
 ```cpp
@@ -190,7 +191,7 @@ struct Plist* phash_table_find_el(Phash_table* hash_table, char* word, int* item
     return hash_table->hash_list + offset;
 }
 ```
-
+____
 ### I used optimization using AVX2 to compare strings
 
 ```cpp
@@ -218,5 +219,9 @@ struct Plist* phash_table_find_el(Phash_table* hash_table, char* word, int* item
     return hash_table->hash_list + offset;
 }
 ```
+____
 
 ### This optimization gave a relatively good increase in the performance of the program, below is a table with time values and callgrind results.
+### I use flag ```-O2``` because AVX2 doesn't work correctly without this flag.
+
+![Image alt](https://github.com/shaazmik/Hash_table_analysis/blob/main/analytics/screenshots/INTRINSICS_O2.PNG)
