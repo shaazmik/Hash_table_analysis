@@ -298,11 +298,63 @@ crc32_asm:
 
 ### We got an increase of 10.2 million units .self
 
+|WITHOUT OPTIMIZATION |0,064 seconds|
+|---------------------|-------------|
+|WITH -O2             |0,043 seconds|
+|WITH -O2 + AVX2      |0,038 seconds|
+|WITH -O2 + AVX2 + ASM|0,036 seconds|
+
+### Total increase of 5.55% compared to last optimization
+
 As for the other functions, we may notice a large value in ```strlen```, ```fill_words_text```, ```plist_constructor```, <br/>
 we can omit them because these functions are only used once when filling the table. <br/>
 There is no repetition of them, so there will be no improvement in optimization when the table is filled permanently <br/>
 This optimisation is therefore sufficient to improve performance. The results of the stress test run times are shown below.<br/>
 **Finally, I reduce the number of function calls and various cosmetic changes** <br/>
+
+
+### This is a study paper and there were 3 optimisations to try
+### I decided to rewrite strchr in asm
+
+```asm
+section .text
+
+global strchr_asm
+
+
+strchr_asm:
+
+mov rax, rsi
+    
+.loop:
+    cmp byte [rdi], al
+    je .exit
+
+    cmp byte [rdi], 00h
+    je .exitnull
+
+    inc rdi
+
+    jmp .loop
+
+.exit:
+    mov rax, rdi 
+    ret 
+
+.exitnull:
+    mov rax, 0
+    ret
+```
+|WITHOUT OPTIMIZATION |0,064 seconds|
+|---------------------|-------------|
+|WITH -O2             |0,043 seconds|
+|WITH -O2 + AVX2      |0,038 seconds|
+|WITH -O2 + AVX2 + ASM|0,036 seconds|
+|ALL OPTIMIZATION     |0,035 seconds|
+
+### Total increase of 2,8%
+This gain is very small, so this optimisation does not make further sense.<br/>
+But for training purposes, it was necessary to show that it is not necessary to write unnecessary optimisations without a real gain.<br/>
 
 ## Total:
 
@@ -323,9 +375,9 @@ This optimisation is therefore sufficient to improve performance. The results of
 |WITH -O2 + AVX2      |0,038 seconds|
 |WITH -O2 + AVX2 + ASM|0,036 seconds|
 
+
 #### All prufs can be checked in ```./analytics/screenshots/```
 #### All tables (excel) can be checked in ```./hash_statistics/```
-
 #### From this work we can conclude: 
 #### the speed of the hash table is directly dependent on the size of the lists and the hash table and hash functions.
 #### If the hash table and list are sized correctly, there is not much need to optimise the program.
