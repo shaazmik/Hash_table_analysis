@@ -315,7 +315,7 @@ This optimisation is therefore sufficient to improve performance. The results of
 #### All prufs can be checked in ```./analytics/screenshots/```
 #### All tables (excel) can be checked in ```./hash_statistics/```
 
-#### From this work we can conclude 
-#### that the speed of the hash table is directly dependent on the size of the lists and the hash table and hash functions.
+#### From this work we can conclude: 
+#### the speed of the hash table is directly dependent on the size of the lists and the hash table and hash functions.
 #### If the hash table and list are sized correctly, there is not much need to optimise the program.
 #### In our case Hash_table capacity = 6900, List capacity = 20.
