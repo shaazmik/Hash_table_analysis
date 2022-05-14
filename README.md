@@ -313,5 +313,5 @@ This optimisation is therefore sufficient to improve performance. The results of
 |WITH -O2 + AVX2 + ASM|0,036 seconds|
 
 #### All prufs can be checked in ```./analytics/screenshots/```
-
+#### All tables (excel) can be checked in ```./hash_statistics/```
 
