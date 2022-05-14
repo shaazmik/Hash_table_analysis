@@ -141,5 +141,5 @@ But I will work with CRC32 as in our case lesser number of matches is much more 
 |first ASCII  |0,673 seconds|
 |length of str|1,725 seconds|
 |sum of ASCII |0,099 seconds|
-|ROL          |0,097 seconds|
+|ROL          |0,096 seconds|
 |CRC32        |0,101 seconds|
