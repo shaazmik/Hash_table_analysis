@@ -145,7 +145,7 @@ But I will work with CRC32 as in our case lesser number of matches is much more 
 |CRC32        |0,097 seconds|
 
 
-As you can see, the program with ROL is slightly faster, but the variance of ROL is greater than that of CRC32.\n 
+As you can see, the program with ROL is slightly faster, but the variance of ROL is greater than that of CRC32.
 If we increase the amount of input data, 
 the performance of the program with CRC32 will be much better, 
 because the cost of finding an element in the list is much higher than the hash calculation. 
