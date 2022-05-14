@@ -65,3 +65,8 @@ Obviously, word lengths are limited, so there are plenty of collisions. The runn
 ### 4. ___hash returns sum of ASCII characters___
 
 ![Image alt](https://github.com/shaazmik/Hash_table_analysis/blob/main/hash_statistics/sum%20of%20ASCII%20symbols.png)
+
+### Opinion:
+This hash function gives the least amount of collisions, so it works faster than the previous ones. Running time: ___0.117 seconds___.
+Interesting deviations can be seen in the graph. I have checked it and indeed these values correspond to reality. 
+Our test contains words consisting of more than 32 characters, and the ASCII value of a character is really that big **(more than 255)**
