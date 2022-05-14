@@ -169,7 +169,7 @@ And the **hash function** itself accordingly
 ![Image alt](https://github.com/shaazmik/Hash_table_analysis/blob/main/analytics/screenshots/O2.PNG)
 ____
 ____
-### ___The original "phash_table_find_el" version ___
+### ___The original ```phash_table_find_el``` version ___
 
 ```cpp
 struct Plist* phash_table_find_el(Phash_table* hash_table, char* word, int* item_num_of_list)
