@@ -163,3 +163,5 @@ ____
 
 Based on this result (the self column), we can see that the function with the highest load is **"phash_table_find_el"**.<br/>
 And the **hash function** itself accordingly
+
+### For clarity, the results of compiler optimisation with the ```-O2``` flag are as follows
