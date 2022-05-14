@@ -67,7 +67,7 @@ Obviously, word lengths are limited, so there are plenty of collisions. The runn
 ![Image alt](https://github.com/shaazmik/Hash_table_analysis/blob/main/hash_statistics/sum%20of%20ASCII%20symbols.png)
 
 ### Opinion:
-This hash function gives the least amount of collisions, so it works faster than the previous ones. Running time: ___0.117 seconds___.
+This hash function gives the least amount of collisions, so it works faster than the previous ones. Running time: ___0,098 seconds___.
 Interesting deviations can be seen in the graph. I have checked it and indeed these values correspond to reality. 
 Our test contains words consisting of more than 32 characters, and the ASCII value of a character is really that big **(more than 255)**
 
@@ -125,3 +125,11 @@ size_t hash_CRC32(char* str)
 }
 ```
 ![Image alt](https://github.com/shaazmik/Hash_table_analysis/blob/main/hash_statistics/CRC32.png)
+
+### Opinion:
+This hash function is very interesting, it gives the least amount of collisions, which will result in a big performance gain on more data. 
+Especially when **the stress testing** is to find items in a list. However, in our case the program performs slightly less than the ROL hash function. 
+This is due to the timing of the hash function itself.
+Running time: ___0,107 seconds___.
+**ROL** hash function works faster than **CRC32**. 
+But I will work with CRC32 as in our case lesser number of matches is much more useful than the hash algorithm itself.
