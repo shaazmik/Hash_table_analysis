@@ -38,4 +38,4 @@ then take the speed of the programme and the reasons for their changes.
 ### 1. __hash_return_one__
 ![Image alt](https://github.com/shaazmik/Hash_table_analysis/blob/main/hash_statistics/return1.png)
 
-The running time of the programme with this hash function is ___5.81 seconds___
+The running time of the programme with this hash function is ___6.287 seconds___. This is really a lot, most likely due to the sheer number of collisions. The large number of collisions caused our list to expand forever (*realloc*). But the biggest burden is checking the words in the list, since the length of the list is huge, so the check takes a very long time
