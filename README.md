@@ -168,7 +168,7 @@ And the **hash function** itself accordingly
 
 ![Image alt](https://github.com/shaazmik/Hash_table_analysis/blob/main/analytics/screenshots/O2.PNG)
 
-### __The original "phash_table_find_el" version ___
+### ___The original "phash_table_find_el" version ___
 
 ```cpp
 struct Plist* phash_table_find_el(Phash_table* hash_table, char* word, int* item_num_of_list)
@@ -190,3 +190,33 @@ struct Plist* phash_table_find_el(Phash_table* hash_table, char* word, int* item
     return hash_table->hash_list + offset;
 }
 ```
+
+### I used optimization using AVX2 to compare strings
+
+```cpp
+struct Plist* phash_table_find_el(Phash_table* hash_table, char* word, int* item_num_of_list)
+{
+    size_t offset = hash_table->hash_func(word) % hash_table->capacity;
+
+    __m128i string = _mm_loadu_si128 ((__m128i *)word);
+    __m128i listStr {};
+
+    int flag = 0;
+
+    for (int i = 1; (hash_table->hash_list[offset].size >= i) && (flag == 0) ; i++)
+    {
+        listStr = _mm_loadu_si128 ((__m128i *)hash_table->hash_list[offset].data[i].value);
+
+        int cmp = _mm_cmpestri (string, strlen (word) + 1, listStr, hash_table->hash_list[offset].data[i].len_str + 1, _SIDD_CMP_EQUAL_EACH | _SIDD_CMP_EQUAL_ORDERED | _SIDD_UBYTE_OPS); // | _SIDD_NEGATIVE_POLARITY);
+
+        if (cmp == 0) 
+            flag = i;
+    }
+
+    *item_num_of_list = flag;
+
+    return hash_table->hash_list + offset;
+}
+```
+
+### This optimization gave a relatively good increase in the performance of the program, below is a table with time values and callgrind results.
