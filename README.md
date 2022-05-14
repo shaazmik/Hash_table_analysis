@@ -53,7 +53,7 @@ since the length of the list is huge, so the check takes a very long time.
 ![Image alt](https://github.com/shaazmik/Hash_table_analysis/blob/main/hash_statistics/first%20ASCII%20symbol.png)
 
 ### Opinion:
-The running time of a programme with this hash function is ___0,673 seconds___. The reasons for the load and the speed of the programme are the same as in the first case.However, there are fewer collisions, so the speed is higher.
+The running time of a programme with this hash function is ___0,673 seconds___. The reasons for the load and the speed of the programme are the same as in the first case. However, there are fewer collisions, so the speed is higher.
 
 ### 3. ___hash returns length of string___
 
@@ -136,6 +136,6 @@ But I will work with CRC32 as in our case lesser number of matches is much more 
 
 ## ___Conclusion for the Task 1:___
 |hash function|time|
-|-------------|----|
-
+|-------------|-------------|
+|return 1     |6,287 seconds|
 
