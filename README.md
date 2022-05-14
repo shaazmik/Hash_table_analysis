@@ -28,9 +28,10 @@ The main point of study is certain hash functions and programme performance depe
 Also you can compile with flag ```-O2``` for optimization.
 
 ____
+____
 
 ## ___Task_1___ 
-##___Learning hash functions___
+## ___Learning hash functions___
 
 I had 6 hash functions to consider:
 - always return 1
@@ -163,7 +164,7 @@ It is possible to optimise the hash function and make it faster than ROL .Next w
 <br/>
 ### ___Obviously the running time of the hash table is directly related to the hash function and the size of the table and list___
 ____
-
+____
 ## ___Task_2___ 
 ## ___Optimization___
 
