@@ -49,3 +49,5 @@ But the biggest burden is checking the words in the list,
 since the length of the list is huge, so the check takes a very long time.
 
 ### 2. ___hash returns value of the first ASCII character___
+
+![Image alt](https://github.com/shaazmik/Hash_table_analysis/blob/main/hash_statistics/first%20ASCII%20symbol.png)
