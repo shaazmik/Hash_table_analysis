@@ -135,7 +135,10 @@ Running time: ___0,107 seconds___.
 But I will work with CRC32 as in our case lesser number of matches is much more useful than the hash algorithm itself.
 
 ## ___Conclusion for the Task 1:___
-|hash function|time|
+|**HASH FUNCTION**|**TIME**|
 |-------------|-------------|
 |return 1     |6,287 seconds|
-
+|-------------|-------------|
+|first ASCII  |0,673 seconds|
+|-------------|-------------|
+|length of str|1,725 seconds|
