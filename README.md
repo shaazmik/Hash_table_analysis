@@ -77,4 +77,21 @@ Our test contains words consisting of more than 32 characters, and the ASCII val
 This feature is more interesting than the ones before it.
 To understand how this hash function works, here is a **screenshot of its implementation**.
 
-![Image alt](https://github.com/shaazmik/Hash_table_analysis/blob/main/analytics/screenshots/rol.PNG)
+```cpp
+size_t hash_rol(char* str)
+{
+    assert (str != nullptr);
+
+    int hash = *str;
+    str++;
+
+    while (*str != '\0')
+    {
+        hash = (hash << 1) ^ *str;
+
+        str++;
+    }
+
+    return hash;
+}
+```
