@@ -42,7 +42,7 @@ which show **the distribution of list lengths depending on the hash table elemen
 
 
 ### Opinion:
-The running time of the programme with this hash function is ___6.287 seconds___.
+The running time of the programme with this hash function is ___6,287 seconds___.
 This is really a lot, most likely due to the sheer number of collisions. 
 The large number of collisions caused our list to expand forever (*realloc*). 
 But the biggest burden is checking the words in the list, 
@@ -51,3 +51,6 @@ since the length of the list is huge, so the check takes a very long time.
 ### 2. ___hash returns value of the first ASCII character___
 
 ![Image alt](https://github.com/shaazmik/Hash_table_analysis/blob/main/hash_statistics/first%20ASCII%20symbol.png)
+
+### Opinion:
+The running time of a programme with this hash function is ___0,673 seconds___. The reasons for the load and the speed of the programme are the same as in the first case.However, there are fewer collisions, so the speed is higher.
