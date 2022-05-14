@@ -133,3 +133,6 @@ This is due to the timing of the hash function itself.
 Running time: ___0,107 seconds___.
 **ROL** hash function works faster than **CRC32**. 
 But I will work with CRC32 as in our case lesser number of matches is much more useful than the hash algorithm itself.
+
+## ___Conclusion for Task 1:___
+
