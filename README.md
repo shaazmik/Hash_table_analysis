@@ -237,7 +237,7 @@ ____
 
 ![Image alt](https://github.com/shaazmik/Hash_table_analysis/blob/main/analytics/screenshots/INTRINSICS_O2.PNG)
 
-As you can see, our function has accelerated by 3m units self. which is an excellent result, <br\>
+As you can see, our function has accelerated by **3 million** units self. which is an excellent result, <br\>
 but if we talk about more down to earth values, here is a table of the running times. You can find all of the proufs in the ```./analytics/screenshots/``` folder
 
 |WITHOUT OPTIMIZATION|0,064 seconds|
