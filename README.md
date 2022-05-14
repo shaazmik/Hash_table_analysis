@@ -1,8 +1,8 @@
 # Hash_table_analysis
 
 ## ___Introduction___
-In this project I have studied how a __hash-table__ based on the __chain method__ works. 
-The main point of study is certain hash functions and programme performance depending on hash functions, table sizes and various loads.
+In this project I have studied how a __hash-table__ based on the __chain method__ works. <br/>
+The main point of study is certain hash functions and programme performance depending on hash functions, table sizes and various loads. <br/>
 - Input data: L.N. Tolstoy's text 'War and Peace' (eng. version)
 - Stress Testing: Search for each word in the list 5 times (element of Hash Table)
 - Hash table capacity : **6900**
@@ -31,9 +31,9 @@ I had 6 hash functions to consider:
 - ROL
 - CRC32
 
-First of all, we need to determine the number of collisions depending on our hash functions, 
-then take the speed of the programme and the reasons for their changes.For clarity, here are the charts for each hash function, 
-which show **the distribution of list lengths depending on the hash table element**:
+First of all, we need to determine the number of collisions depending on our hash functions, <br/>
+then take the speed of the programme and the reasons for their changes.For clarity, here are the charts for each hash function, <br/>
+which show **the distribution of list lengths depending on the hash table element**: <br/>
 
 
 ### 1. ___hash always returns 1___
@@ -42,11 +42,11 @@ which show **the distribution of list lengths depending on the hash table elemen
 
 
 ### Opinion:
-The running time of the programme with this hash function is ___6,287 seconds___.
-This is really a lot, most likely due to the sheer number of collisions. 
-The large number of collisions caused our list to expand forever (*realloc*). 
-But the biggest burden is checking the words in the list, 
-since the length of the list is huge, so the check takes a very long time.
+The running time of the programme with this hash function is ___6,287 seconds___. <br/>
+This is really a lot, most likely due to the sheer number of collisions. <br/>
+The large number of collisions caused our list to expand forever (*realloc*).  <br/>
+But the biggest burden is checking the words in the list, <br/>
+since the length of the list is huge, so the check takes a very long time. <br/>
 
 ### 2. ___hash returns value of the first ASCII character___
 
@@ -67,15 +67,15 @@ Obviously, word lengths are limited, so there are plenty of collisions. The runn
 ![Image alt](https://github.com/shaazmik/Hash_table_analysis/blob/main/hash_statistics/sum%20of%20ASCII%20symbols.png)
 
 ### Opinion:
-This hash function gives the least amount of collisions, so it works faster than the previous ones. Running time: ___0,099 seconds___.
-Interesting deviations can be seen in the graph. I have checked it and indeed these values correspond to reality. 
-Our test contains words consisting of more than 32 characters, and the ASCII value of a character is really that big **(more than 255)**
+This hash function gives the least amount of collisions, so it works faster than the previous ones. Running time: ___0,099 seconds___. <br/>
+Interesting deviations can be seen in the graph. I have checked it and indeed these values correspond to reality. <br/>
+Our test contains words consisting of more than 32 characters, and the ASCII value of a character is really that big **(more than 255)** <br/>
 
 
 ### 5. ___ROL hash function___
 
-This feature is more interesting than the ones before it.
-To understand how this hash function works, here is a **screenshot of its implementation**.
+This feature is more interesting than the ones before it. <br/>
+To understand how this hash function works, here is a **screenshot of its implementation**. <br/>
 
 ```cpp
 size_t hash_rol(char* str)
@@ -97,15 +97,15 @@ size_t hash_rol(char* str)
 ```
 ![Image alt](https://github.com/shaazmik/Hash_table_analysis/blob/main/hash_statistics/ROL.png)
 ### Opinion:
-This function gives a very small number of collisions. It works very quickly, 
-running time: ___0,96 seconds___
-There are so few matches that the list does not have to expand and the search is very fast, 
-this hash function can be called "good" in our situation.
+This function gives a very small number of collisions. It works very quickly, <br/>
+running time: ___0,96 seconds___ <br/>
+There are so few matches that the list does not have to expand and the search is very fast,  <br/>
+this hash function can be called "good" in our situation. <br/>
 
 
 ### 6. ___CRC32 hash function___
 
-Finally, CRC32 is the best hash function on out list.
+Finally, CRC32 is the best hash function on out list. <br/>
 
 ***Implementation***:
 ```cpp
@@ -127,12 +127,12 @@ size_t hash_CRC32(char* str)
 ![Image alt](https://github.com/shaazmik/Hash_table_analysis/blob/main/hash_statistics/CRC32.png)
 
 ### Opinion:
-This hash function is very interesting, it gives the least amount of collisions, which will result in a big performance gain on more data. 
-Especially when **the stress testing** is to find items in a list. However, in our case the program performs slightly less than the ROL hash function. 
-This is due to the timing of the hash function itself.
-Running time: ___0,97 seconds___.
-**ROL** hash function works faster than **CRC32**. 
-But I will work with CRC32 as in our case lesser number of matches is much more useful than the hash algorithm itself.
+This hash function is very interesting, it gives the least amount of collisions, which will result in a big performance gain on more data. <br/>
+Especially when **the stress testing** is to find items in a list. However, in our case the program performs slightly less than the ROL hash function. <br/>
+This is due to the timing of the hash function itself. <br/>
+Running time: ___0,97 seconds___. <br/>
+**ROL** hash function works faster than **CRC32**. <br/>
+But I will work with CRC32 as in our case lesser number of matches is much more useful than the hash algorithm itself. <br/>
 
 ## ___Conclusion for the Task 1:___
 |**HASH FUNCTION**|**TIME**|
