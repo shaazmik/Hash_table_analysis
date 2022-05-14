@@ -106,6 +106,7 @@ this hash function can be called "good" in our situation.
 ### 6. ___CRC32 hash function___
 
 Finally, CRC32 is the best hash function on out list.
+
 ***Implementation***:
 ```cpp
 size_t hash_CRC32(char* str)
@@ -123,3 +124,4 @@ size_t hash_CRC32(char* str)
     return crc;
 }
 ```
+![Image alt](https://github.com/shaazmik/Hash_table_analysis/blob/main/hash_statistics/CRC32.png)
