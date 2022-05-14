@@ -47,6 +47,7 @@ First of all, we need to determine the number of collisions depending on our has
 then take the speed of the programme and the reasons for their changes.For clarity, here are the charts for each hash function, <br/>
 which show **the distribution of list lengths depending on the hash table element**: <br/>
 
+### All compilation took place without any flags.
 
 ### 1. ___hash always returns 1___
 
@@ -110,7 +111,7 @@ size_t hash_rol(char* str)
 ![Image alt](https://github.com/shaazmik/Hash_table_analysis/blob/main/hash_statistics/ROL.png)
 ### Opinion:
 This function gives a very small number of collisions. It works very quickly, <br/>
-running time: ___0,96 seconds___ <br/>
+running time: ___0,63 seconds___ <br/>
 There are so few matches that the list does not have to expand and the search is very fast,  <br/>
 this hash function can be called "good" in our situation. <br/>
 
@@ -142,7 +143,7 @@ size_t hash_CRC32(char* str)
 This hash function is interesting, it gives the least amount of collisions, which will result in a big performance gain on more data. <br/>
 Especially when **the stress testing** is to find items in a list. However, in our case the program performs slightly less than the ROL hash function. <br/>
 This is due to the timing of the hash function itself. <br/>
-Running time: ___0,97 seconds___. <br/>
+Running time: ___0,64 seconds___. <br/>
 **ROL** hash function works faster than **CRC32**. <br/>
 But I will work with CRC32 as in our case lesser number of matches is much more useful than the hash algorithm itself. <br/>
 
@@ -354,7 +355,7 @@ mov rax, rsi
 
 ### Total increase of 2,8%
 This gain is very small, so this optimisation does not make further sense.<br/>
-But for training purposes, it was necessary to show that it is not necessary to write unnecessary optimisations without a real gain.<br/>
+But for training purposes I wanted to show that there is no need to write unnecessary optimizations without a real gain.<br/>
 
 ## Total:
 
