@@ -301,3 +301,15 @@ we can omit them because these functions are only used once when filling the tab
 There is no repetition of them, so there will be no improvement in optimization when the table is filled permanently <br/>
 This optimisation is therefore sufficient to improve performance. The results of the stress test run times are shown below.<br/>
 **Finally, reduce the number of function calls and various cosmetic changes** <br/>
+
+### Total:
+
+|WITHOUT OPTIMIZATION |0,064 seconds|
+|---------------------|-------------|
+|WITH -O2             |0,043 seconds|
+|WITH -O2 + AVX2      |0,038 seconds|
+|WITH -O2 + AVX2 + ASM|0,036 seconds|
+
+#### All prufs can be checked in ```./analytics/screenshots/```
+
+
