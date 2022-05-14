@@ -150,3 +150,5 @@ If we increase the amount of input data,<br/>
 the performance of the program with CRC32 will be much better, <br/>
 because the cost of finding an element in the list is much higher than the hash calculation. <br/>
 And CRC32 has obviously less elements in one list <br/>
+<br/>
+### ___Obviously the running time of the hash table is directly related to the hash function and the size of the table and list___
