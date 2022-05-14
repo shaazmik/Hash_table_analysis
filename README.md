@@ -294,4 +294,5 @@ crc32_asm:
 
 ![Image alt](https://github.com/shaazmik/Hash_table_analysis/blob/main/analytics/screenshots/O2_INTR_ASM.PNG)
 
-###
+### We got an increase of 10.2 million units .self
+
