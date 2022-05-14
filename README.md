@@ -230,5 +230,6 @@ As you can see, our function has accelerated by 3m units self. which is an excel
 but if we talk about more down to earth values, here is a table of the running times. You can find all of the proufs in the ```./analytics/screenshots/``` folder
 
 |WITHOUT OPTIMIZATION|0,058 seconds|
+|--------------------|-------------|
 |WITH -O2            |0,043 seconds|
 |WITH -O2 + AVX2     |0,038 seconds|
