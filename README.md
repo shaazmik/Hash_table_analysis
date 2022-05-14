@@ -40,7 +40,7 @@ then take the speed of the programme and the reasons for their changes.
 ![Image alt](https://github.com/shaazmik/Hash_table_analysis/blob/main/hash_statistics/return1.png)
 
 
-
+### Opinion:
 The running time of the programme with this hash function is ___6.287 seconds___.
 This is really a lot, most likely due to the sheer number of collisions. 
 The large number of collisions caused our list to expand forever (*realloc*). 
