@@ -153,5 +153,8 @@ And CRC32 has obviously less elements in one list <br/>
 It is possible to optimise the hash function and make it faster than ROL .Next we will do all the work with the CRC32 function
 <br/>
 ### ___Obviously the running time of the hash table is directly related to the hash function and the size of the table and list___
+____
 
 ## ___Task 2: Optimization___
+
+**Run the original programme via the vallgrind tool - callgrind**
