@@ -291,3 +291,7 @@ crc32_asm:
     not eax
     ret
 ```
+
+![Image alt](https://github.com/shaazmik/Hash_table_analysis/blob/main/analytics/screenshots/O2_INTR_ASM.PNG)
+
+###
