@@ -235,3 +235,22 @@ but if we talk about more down to earth values, here is a table of the running t
 |WITH -O2 + AVX2     |0,038 seconds|
 
 ### Total increase of 13,16%
+### Now let's rewrite our hash function into assembler
+### Original version ```hash_CRC32```
+
+```cpp
+size_t hash_CRC32(char* str)
+{
+    assert(str != nullptr);
+
+    unsigned int crc = 0xFFFFFFFFUL;
+
+    while (*str != '\0')
+    {
+        crc = CRCTable[(crc ^ *(str)) & 0xFF] ^ (crc >> 8);
+        str++;
+    }
+
+    return crc;
+}
+```
