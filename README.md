@@ -6,7 +6,7 @@
 
 [2.Task 1](#Task 1)
 
-[3.Task 2](#Task 2)
+[3.Task 2](#Task2)
 
 ## ___Introduction___
 In this project I have studied how a __hash-table__ based on the __chain method__ works. <br/>
@@ -163,7 +163,7 @@ It is possible to optimise the hash function and make it faster than ROL .Next w
 ### ___Obviously the running time of the hash table is directly related to the hash function and the size of the table and list___
 ____
 
-## ___Task 2___ 
+## ___Task2___ 
 ## ___Optimization___
 
 ### **Run the original programme via the vallgrind tool - callgrind**
