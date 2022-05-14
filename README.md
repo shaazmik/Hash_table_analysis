@@ -8,6 +8,8 @@
 
 [3.Task 2](#Task_2)
 
+[4.Total](#Total)
+
 ## ___Introduction___
 In this project I have studied how a __hash-table__ based on the __chain method__ works. <br/>
 The main point of study is certain hash functions and programme performance depending on hash functions, table sizes and various loads. <br/>
@@ -302,7 +304,7 @@ There is no repetition of them, so there will be no improvement in optimization 
 This optimisation is therefore sufficient to improve performance. The results of the stress test run times are shown below.<br/>
 **Finally, reduce the number of function calls and various cosmetic changes** <br/>
 
-### Total:
+## Total:
 
 |WITHOUT OPTIMIZATION |0,064 seconds|
 |---------------------|-------------|
